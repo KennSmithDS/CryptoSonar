@@ -1,0 +1,6 @@
+pandas
+selenium
+bs4
+numpy
+requests
+flask
