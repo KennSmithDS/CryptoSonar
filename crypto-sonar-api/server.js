@@ -1,9 +1,9 @@
 require('dotenv').config({path: '.env'});
 const express = require('express');
-const mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
-import { resolvers } from './resolvers';
-import { typeDefs } from './typeDefs';
+const { connectToDb } = require('./db');
+const { resolvers } = require('./resolvers');
+const { typeDefs } = require('./typeDefs');
    
 const startServer = async () => {
 
@@ -16,6 +16,8 @@ const startServer = async () => {
     });
 
     server.applyMiddleware({ app });
+
+    connectToDb();
 
     app.listen({port}, () => {
         console.log(`Server connected and listening on ${port}`);

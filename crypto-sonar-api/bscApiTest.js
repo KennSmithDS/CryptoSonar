@@ -12,8 +12,8 @@ const url = `https://api.bscscan.com/api?module=account&action=tokentx&address=$
 axios.get(url).then(response => {
     const transx_arr = response.data.result;
     transx_arr.forEach(element => {
-        const { timeStamp, contractAddress, tokenName, tokenSymbon, value } = element;
-        console.log(`Transaction details: timestamp => ${timeStamp} contractAddress => ${contractAddress} tokenName => ${tokenName} tokenSymbol => ${tokenSymbon} value=>${value}`);
+        const { timeStamp, contractAddress, tokenName, tokenSymbol, value } = element;
+        console.log(`Transaction details: timestamp => ${timeStamp} contractAddress => ${contractAddress} tokenName => ${tokenName} tokenSymbol => ${tokenSymbol} value=>${value}`);
     })
 })
 .catch(err => {

@@ -1,9 +1,14 @@
-const { MongoClient } = require('mongodb');
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://admin:<password>@crypto-sonar-db.l253g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+async function connectToDb() {
+  try {
+    const db_url = process.env.DB_URL;
+    await mongoose.connect(db_url, {useNewUrlParser: true});
+    console.log(`Connected to Atlas MongoDB at ${db_url}`);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+module.exports = { connectToDb };
