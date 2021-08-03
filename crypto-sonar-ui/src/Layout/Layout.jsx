@@ -1,7 +1,13 @@
 import React from 'react'
-import './Layout.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import {  Container, Row, Col } from 'react-bootstrap';
+
+import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
+import { ResourcesPanel } from '../Resources-Panel/ResourcesPanel'
+import { TrackedWalletsPanel } from '../Tracked-Wallets-Panel/TrackedWalletsPanel'
+import { NavBar } from '../NavBar/NavBar'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Layout.css';
 
 
 export const Layout = () => {
@@ -9,26 +15,26 @@ export const Layout = () => {
     <Container>
       <Row>
         <Col className="NavBar" md={12}>
-          NavBar
+          <NavBar />
         </Col>
       </Row>
       <Row>
         <Col md={3}>
           <Row>
             <Col className="tracked-wallet" md={12}>
-              tracked-wallet
+              <TrackedWalletsPanel />
             </Col>
           </Row>
         </Col>
         <Col md={9}>
           <Row>
             <Col className="alerts-panel" md={12}>
-              alerts-panel
+              <AlertsPanel />
             </Col>
           </Row>
           <Row>
             <Col className="resources-panel" md={12}>
-              resources-panel
+              <ResourcesPanel />
             </Col>
           </Row>
         </Col>
