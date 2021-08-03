@@ -4,9 +4,8 @@ import {  Container, Row, Col } from 'react-bootstrap';
 import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
 import { ResourcesPanel } from '../Resources-Panel/ResourcesPanel'
 import { TrackedWalletsPanel } from '../Tracked-Wallets-Panel/TrackedWalletsPanel'
-import { NavBar } from '../NavBar/NavBar'
+import { NavBarPanel } from '../NavBar/NavBarPanel'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Layout.css';
 
 
@@ -15,7 +14,7 @@ export const Layout = () => {
     <Container>
       <Row>
         <Col className="NavBar" md={12}>
-          <NavBar />
+          <NavBarPanel />
         </Col>
       </Row>
       <Row>

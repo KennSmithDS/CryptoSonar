@@ -1,6 +1,7 @@
 import './App.css';
-import { Layout } from './Layout/Layout'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Layout } from './Layout/Layout'
 
 function App() {
   return (
