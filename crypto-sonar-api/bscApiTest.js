@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const axios = require('axios');
 
 const walletAddress = '0xb7c45a37977ec7ee3772ffb131d7f2e07c838f12'
