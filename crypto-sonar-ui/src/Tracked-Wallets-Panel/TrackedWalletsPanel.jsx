@@ -10,7 +10,7 @@ const walletList = ['Wallet 1', 'Wallet 2', 'Wallet 3']
 function ListWallets() {
   return(
     walletList.map(wallet => (        
-      <ListGroup action defaultActiveKey={`#${wallet}`}>
+      <ListGroup defaultActiveKey={`#${wallet}`} key={`#${wallet}`}>
         <ListGroup.Item action variant="light">
           {wallet}
         </ListGroup.Item>
@@ -26,7 +26,7 @@ export function TrackedWalletsPanel() {
   }
 
   return (
-    <div class="wallets-list-panel">
+    <div >
       <h3>Tracked Wallets Panel </h3>
       <Container className="wallets-list-container">
         <ListWallets />
