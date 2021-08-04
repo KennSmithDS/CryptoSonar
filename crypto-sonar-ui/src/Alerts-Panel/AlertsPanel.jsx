@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class AlertsPanel extends Component {
-  render() {
-    return (
-      <div>
-        Alerts Panel Here
-      </div>
-    )
-  }
+export function AlertsPanel() {
+  return (
+    <div>
+      Alerts Panel Here
+    </div>
+  )  
 }
 
 export default AlertsPanel
