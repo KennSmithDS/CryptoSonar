@@ -28,7 +28,6 @@ export const  AddWalletItem = (props) => {
       {
         alias
         address
-        userId
       }
     }`
 
