@@ -3,9 +3,12 @@ import { ListGroup, Container, Button } from 'react-bootstrap'
 import { PlusCircle, DashCircle } from 'react-bootstrap-icons'
 import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
+import { addWallet } from '../queries/graphqlQueries'
 
+
+const userId="610a1a1029d68f47b975cfd8"
 const QUERY = `query{
-  user(id: "610a1a1029d68f47b975cfd8") {
+  user(id: "${userId}") {
     id
     wallets {
       alias
@@ -16,6 +19,7 @@ const QUERY = `query{
 
 function ListWallets() {
   const [walletList, setWalletList] = useState([])
+  
   useEffect(() => { 
     fetch(process.env.REACT_APP_API_ENDPOINT, {
       method: 'POST',
@@ -24,8 +28,6 @@ function ListWallets() {
   }).then((response) => response.json())
     .then((data) => setWalletList(data.data.user.wallets));
   }, []);
-
-  // walletList.map((walletItem)=> console.log(`alias: ${walletItem.alias} address:${walletItem.address}`))
 
   return(
     walletList.map(wallet => (        
@@ -40,6 +42,7 @@ function ListWallets() {
 
 export function TrackedWalletsPanel() {
   const [showModal, setShowModal] = useState(false)
+  const [walletList, setWalletList] = useState([])
   const openModal = () => {
     setShowModal(prev => !prev)
   }
@@ -52,7 +55,7 @@ export function TrackedWalletsPanel() {
       </Container>
       <Container className="add-delete-wallet">
         <Button variant="outline-secondary" onClick={openModal}><PlusCircle size={50} /></Button>
-          <AddWalletItem showModal={showModal} setShowModal={setShowModal} />
+          <AddWalletItem query={addWallet} walletList={walletList} setWalletList={setWalletList} showModal={showModal} setShowModal={setShowModal} />
         <Button variant="outline-danger"><DashCircle size={50} /></Button>
       </Container>      
     </div>
