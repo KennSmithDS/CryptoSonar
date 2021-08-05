@@ -1,18 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ListGroup, Container, Button } from 'react-bootstrap'
 import { PlusCircle, DashCircle } from 'react-bootstrap-icons'
 import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
 
-
-const walletList = ['Wallet 1', 'Wallet 2', 'Wallet 3']
+const QUERY = `query{
+  user(id: "610a1a1029d68f47b975cfd8") {
+    id
+    wallets {
+      alias
+      address
+    }
+  }
+}`;
 
 function ListWallets() {
+  const [walletList, setWalletList] = useState([])
+  useEffect(() => { 
+    fetch(process.env.REACT_APP_API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: QUERY }),
+  }).then((response) => response.json())
+    .then((data) => setWalletList(data.data.user.wallets));
+  }, []);
+
+  // walletList.map((walletItem)=> console.log(`alias: ${walletItem.alias} address:${walletItem.address}`))
+
   return(
     walletList.map(wallet => (        
-      <ListGroup defaultActiveKey={`#${wallet}`} key={`#${wallet}`}>
+      <ListGroup defaultActiveKey={`#${wallet.address}`} key={`#${wallet.address}`}>
         <ListGroup.Item action variant="light">
-          {wallet}
+          {wallet.alias}
         </ListGroup.Item>
       </ListGroup>
     ))
@@ -39,6 +58,5 @@ export function TrackedWalletsPanel() {
     </div>
   )
 }
-
 
 export default TrackedWalletsPanel
