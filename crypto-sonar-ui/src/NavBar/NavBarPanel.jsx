@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import './NavBarPanel.css'
 import {Broadcast} from 'react-bootstrap-icons';
@@ -6,7 +6,7 @@ import {Broadcast} from 'react-bootstrap-icons';
 import { AccountSettings } from '../AccountSettings'
 
 
-function NavBar() {
+export function NavBarPanel() {
   const [showModal, setShowModal] = useState(false)
   const openModal = () => {
     setShowModal(prev => !prev)
@@ -32,16 +32,6 @@ function NavBar() {
       </Container>
     </Navbar>
   );
-}
-
-export class NavBarPanel extends Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-      </div>
-    )
-  }
 }
 
 export default NavBarPanel
