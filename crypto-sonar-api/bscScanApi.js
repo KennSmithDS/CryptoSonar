@@ -17,13 +17,14 @@ console.log(bqUrl);
 
 const bscUrl = `https://api.bscscan.com/api?module=account&action=tokentx&address=${walletAddress}&startblock=${startBlock}&endblock=${endBlock}&sort=${sortOrder}&apikey=${bscApiKey}`;
 
-axios.get(bscUrl).then(response => {
-    const transx_arr = response.data.result;
-    transx_arr.forEach(element => {
-        const { timeStamp, contractAddress, tokenName, tokenSymbol, value } = element;
-        console.log(`Transaction details: timestamp => ${timeStamp} contractAddress => ${contractAddress} tokenName => ${tokenName} tokenSymbol => ${tokenSymbol} value=>${value}`);
+axios.get(bscUrl)
+    .then(response => {
+        const transx_arr = response.data.result;
+        transx_arr.forEach(element => {
+            const { timeStamp, contractAddress, tokenName, tokenSymbol, value } = element;
+            console.log(`Transaction details: timestamp => ${timeStamp} contractAddress => ${contractAddress} tokenName => ${tokenName} tokenSymbol => ${tokenSymbol} value=>${value}`);
+        })
     })
-})
-.catch(err => {
-    console.log(err)
-});
+    .catch(err => {
+        console.log(err)
+    });
