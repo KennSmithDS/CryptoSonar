@@ -46,7 +46,7 @@ const headers = {
     "X-API-KEY": apiKey
 }
 
-const body = JSON.stringify({ testQuery });
+const body = JSON.stringify( testQuery );
 
 // await axios.post(url, body, headers).then(response => {
 

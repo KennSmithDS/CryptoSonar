@@ -24,7 +24,8 @@ const WalletType = new GraphQLObjectType({
     fields: ( ) => ({
         id: { type: GraphQLID },
         alias: { type: GraphQLString },
-        address: { type: GraphQLString }
+        address: { type: GraphQLString },
+        userId: { type: GraphQLID }
     })
 });
 
