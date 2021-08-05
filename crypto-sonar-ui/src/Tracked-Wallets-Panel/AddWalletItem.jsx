@@ -6,11 +6,12 @@ export function AddWalletItem({ showModal, setShowModal }) {
   const handleClose = () => setShowModal(false);
 
   const useAddWalletForm = (callback) => {
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({}, []);
 
     const handleSubmit = (event) => {
       if (event) event.preventDefault();
       callback();
+      handleClose();
     }
 
     const handleInputChange = (event) => {
@@ -25,16 +26,14 @@ export function AddWalletItem({ showModal, setShowModal }) {
   }
 
   const addWallet = () => {
-    console.log(inputs);
-    alert(`Wallet Added!
+    console.log(`Wallet Added!
       Wallet: ${inputs.walletAddress}
       Alias: ${inputs.walletAlias}`);
   }
+
   const {inputs, handleInputChange, handleSubmit} = useAddWalletForm(addWallet);
 
-
-
-    return (
+  return (
     <>
       {showModal ?
         <Modal show={showModal} onHide={handleClose}>
@@ -47,16 +46,12 @@ export function AddWalletItem({ showModal, setShowModal }) {
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formWalletAddress">
                   <Form.Label>Wallet Address:</Form.Label>
-                  <Form.Control type="string" placeholder="Wallet Address" name="walletAddress" onChange={handleInputChange} value={inputs.walletAddress}/>
-                  <Form.Text className="text-muted">
-                  </Form.Text>
+                  <Form.Control required type="string" placeholder="Wallet Address" name="walletAddress" onChange={handleInputChange} value={inputs.walletAddress || ''}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formAddressAlias">
                   <Form.Label>Address Alias:</Form.Label>
-                  <Form.Control type="string" placeholder="Address Alias" name="walletAlias" onChange={handleInputChange} value={inputs.walletAlias}/>
-                  <Form.Text className="text-muted">
-                  </Form.Text>
+                  <Form.Control required type="string" placeholder="Address Alias" name="walletAlias" onChange={handleInputChange} value={inputs.walletAlias || ''}/>
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
@@ -76,6 +71,5 @@ export function AddWalletItem({ showModal, setShowModal }) {
     </>
   )
 }
-
 
 export default AddWalletItem
