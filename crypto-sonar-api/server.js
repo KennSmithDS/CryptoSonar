@@ -10,7 +10,7 @@ const cors = require('cors');
 const startServer = async () => {
     try {
         // Define port from environment variables
-        const port = process.env.API_SERVER_PORT || 3000;
+        const port = process.env.PORT || 3000;
 
         // Instantiate express server
         const app = express();
