@@ -1,11 +1,14 @@
 # CryptoSonar
 ## Team Members: 
 * Joffrey Inocencio
-* Kendall Smithh
+* Kendall Smith
 
-## Webpage: 
-https://crypto-sonar-api.herokuapp.com/graphql
+## Webpage:
+* Front-end Application
 https://crypto-sonar-ui.herokuapp.com/
+
+* Back-end GraphQL IDE
+https://crypto-sonar-api.herokuapp.com/graphql
 
 # About:
 This project was started with starter code from `react-create-app`.
@@ -30,3 +33,29 @@ This project was started with starter code from `react-create-app`.
 ![HerokuDeployed](./images/iter1_heroku.PNG)
 ![addWalletModal](./images/iter1_addWallet.PNG)
 
+## Contributes made by Kendall:
+* Back-end Development
+  * Deployed MongoDB database to Atlas cluster
+  * Designed GraphQL Schema
+    * User type
+    * Wallet type
+    * Query types
+    * Mutation types
+  * Built query definitions for API requests
+    * Add and remove user mutations
+    * Add and remove wallet mutations
+    * Query all wallets by associated userId
+  * Setup Express server to host GraphQL API
+  * Created scripts for database initialization (either local or deployed)
+    * Drop all documents from database collections
+    * Populate mock documents/data into the database
+* Data Retrieval Development
+  * Bitquery.io API script for token to USD conversion
+  * Bscscan.com Api script for list of tokens held by wallet
+* Deploying Back-end to Heroku
+  * Added `"express-graphql": "^0.12.0"` dependency for stream-lining deployment of GraphQL API
+  * Added `"mongoose": "^5.13.5"` dependency for simplicity in creating GraphQL schema and models
+
+![MongoDBAtlasDeployed](./images/iter1_mongodb_deployment.png)
+![DatabaseInitialization](./images/iter1_mongodb_initialization.png)
+![GraphQLApi](./images/iter1_graphql.png)
