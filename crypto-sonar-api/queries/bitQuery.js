@@ -2,7 +2,7 @@
 
 const quoteToken = "0x55d398326f99059ff775485246999027b3197955"
 
-const usdValueQuery = `
+const getUsdValue = `
 {
   ethereum(network: bsc) {
     dexTrades(
@@ -34,4 +34,23 @@ const usdValueQuery = `
 }
 `;
 
-module.exports = { usdValueQuery };
+const testWallet = "0xb7c45a37977ec7ee3772ffb131d7f2e07c838f12";
+
+const getWalletTokens = `
+    query {
+        ethereum(network: bsc) {
+        address(address: {is: "${testWallet}"}) {
+            balances {
+            currency {
+                address
+                symbol
+                tokenType
+            }
+            value
+            }
+        }
+        }
+    }
+`;
+
+module.exports = { getUsdValue, getWalletTokens };
