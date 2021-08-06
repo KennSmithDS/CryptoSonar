@@ -1,37 +1,42 @@
 import React, { useState } from 'react'
 import {Modal, Button, Container, Form} from 'react-bootstrap'
 
-
-export function AddWalletItem({ showModal, setShowModal }) {
+export const  AddWalletItem = (props) => {
+  const { showModal, setShowModal } = props
   const handleClose = () => setShowModal(false);
+  const [inputs, setInputs] = useState({}, []);
 
-  const useAddWalletForm = (callback) => {
-    const [inputs, setInputs] = useState({}, []);
-
-    const handleSubmit = (event) => {
-      if (event) event.preventDefault();
-      callback();
-      handleClose();
-    }
-
-    const handleInputChange = (event) => {
-      event.persist();
-      setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
-    }
-    return {
-      handleSubmit,
-      handleInputChange,
-      inputs
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    SendData();
+    handleClose();
   }
+  const handleInputChange = ({ target }) => {
+    const {name, value} = target
+    setInputs((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-  const addWallet = () => {
-    console.log(`Wallet Added!
-      Wallet: ${inputs.walletAddress}
-      Alias: ${inputs.walletAlias}`);
+  const SendData = () =>{    
+    const QUERY = `mutation{
+      addWallet(
+        alias: "${inputs.walletAlias}"
+        address: "${inputs.walletAddress}"
+        userId: "610a1a1029d68f47b975cfd8")
+      {
+        alias
+        address
+      }
+    }`
+
+    fetch(process.env.REACT_APP_API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: QUERY }),
+    })
   }
-
-  const {inputs, handleInputChange, handleSubmit} = useAddWalletForm(addWallet);
 
   return (
     <>
@@ -47,6 +52,7 @@ export function AddWalletItem({ showModal, setShowModal }) {
                 <Form.Group className="mb-3" controlId="formWalletAddress">
                   <Form.Label>Wallet Address:</Form.Label>
                   <Form.Control required type="string" placeholder="Wallet Address" name="walletAddress" onChange={handleInputChange} value={inputs.walletAddress || ''}/>
+
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formAddressAlias">
