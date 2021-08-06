@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const { usdValueQuery } = require('./queries/bitQuery');
-// const { testQuery } = require('./queries/testQuery');
+const { usdValueQuery } = require('./queries/bitqueryQueries');
+// const { testQuery } = require('./queries/testBitqueryQuery');
 
 const apiKey = process.env.BQ_API_KEY;
 const url = process.env.BQ_URL;

@@ -3,7 +3,7 @@ const express = require('express');
 const { connectToDb } = require('./db');
 const mongoose = require('mongoose');
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema/schema');
+const schema = require('./Schema/schema');
 const cors = require('cors');
    
 // Major inspiration for Atlas MongoDB integration came from Bed Awad https://github.com/benawad/graphql-mongo-server/

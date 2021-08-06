@@ -1,6 +1,6 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const { usdValueQuery } = require('./queries/bitQuery');
+const { usdValueQuery } = require('./queries/bitqueryQueries');
 
 const bscApiKey = process.env.BSC_API_KEY;
 console.log(bscApiKey);
