@@ -11,7 +11,7 @@
 /* global db print */
 /* eslint no-restricted-globals: "off" */
 
-const fs = require('fs'); // this wont work with mongo 
+import fs from 'fs'; // this wont work with mongo 
 
 // empty wallets collection
 db.wallets.remove({});
