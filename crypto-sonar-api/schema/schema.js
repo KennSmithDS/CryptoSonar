@@ -1,6 +1,6 @@
 const graphql = require('graphql');
-const User = require('../Models/user');
-const Wallet = require('../Models/wallet');
+const User = require('../models/user');
+const Wallet = require('../models/wallet');
 const { GraphQLObjectType, GraphQLBoolean, GraphQLString, GraphQLInt, GraphQLID, GraphQLSchema, GraphQLList, GraphQLNonNull } = graphql;
 
 const UserType = new GraphQLObjectType({
