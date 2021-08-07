@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { ListGroup } from 'react-bootstrap'
 
-export function ListWallets() {
+export function ListWallets(props) {
   const [walletList, setWalletList] = useState([])
 
-  const userId="610a1a1029d68f47b975cfd8"
   const QUERY = `query{
-    user(id: "${userId}") {
+    user(id: "${props.userID}") {
       id
       wallets {
         alias

@@ -5,10 +5,9 @@ import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
 import { ListWallets } from './ListWallets'
 
-export function TrackedWalletsPanel() {
+export function TrackedWalletsPanel(props) {
   const [showModal, setShowModal] = useState(false)
 
-  
   const openModal = () => {
     setShowModal(prev => !prev)
   }  
@@ -17,11 +16,11 @@ export function TrackedWalletsPanel() {
     <div>
       <h3>Tracked Wallets Panel </h3>
       <Container className="wallets-list-container">
-        <ListWallets />
+        <ListWallets userID={props.userID}/>
       </Container>
       <Container className="add-delete-wallet">
         <Button variant="outline-secondary" onClick={openModal}><PlusCircle size={50} /></Button>
-          <AddWalletItem showModal={showModal} setShowModal={setShowModal} />
+          <AddWalletItem userID={props.userID} showModal={showModal} setShowModal={setShowModal} />
         <Button variant="outline-danger"><DashCircle size={50} /></Button>
       </Container>      
     </div>

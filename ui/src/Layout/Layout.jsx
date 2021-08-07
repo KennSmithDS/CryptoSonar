@@ -8,6 +8,7 @@ import { NavBarPanel } from '../NavBar/NavBarPanel'
 
 import './Layout.css';
 
+const userID ="610db0d9a4118a569a48654d"
 
 export const Layout = () => {
   return (
@@ -21,7 +22,7 @@ export const Layout = () => {
         <Col md={3}>
           <Row>
             <Col className="tracked-wallet" md={12}>
-              <TrackedWalletsPanel />
+              <TrackedWalletsPanel userID={userID}/>
             </Col>
           </Row>
         </Col>

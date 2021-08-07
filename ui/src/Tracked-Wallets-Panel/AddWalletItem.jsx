@@ -24,7 +24,7 @@ export const  AddWalletItem = (props) => {
       addWallet(
         alias: "${inputs.walletAlias}"
         address: "${inputs.walletAddress}"
-        userId: "610a1a1029d68f47b975cfd8")
+        userId: "${props.userID}")
       {
         alias
         address
