@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
 import {Modal, Button, Container, Form} from 'react-bootstrap'
+import { gql, useMutation } from '@apollo/client';
+
+const addWallet = gql`
+    mutation ($alias: String!, $address: String!, $userId: ID!) {
+        addWallet(alias: $alias, address: $address, userId: $userId) {
+            id
+            alias
+            address
+            userId
+      }
+    }
+`;
 
 export const  AddWalletItem = (props) => {
   const { showModal, setShowModal } = props
@@ -8,7 +20,8 @@ export const  AddWalletItem = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    SendData();
+    SendData(inputs);
+    props.submitted(true)
     handleClose();
   }
   const handleInputChange = ({ target }) => {
@@ -18,24 +31,18 @@ export const  AddWalletItem = (props) => {
       [name]: value
     }));
   };
-
-  const SendData = () =>{    
-    const QUERY = `mutation{
-      addWallet(
-        alias: "${inputs.walletAlias}"
-        address: "${inputs.walletAddress}"
-        userId: "${props.userID}")
-      {
-        alias
-        address
+  const [addWalFunc, { loading, error }] = useMutation(addWallet);
+    
+  const SendData = (inputs) => {
+    addWalFunc({
+      variables:{
+        alias: inputs.walletAlias,
+        address: inputs.walletAddress,
+        userId: props.userID,
       }
-    }`
-
-    fetch(process.env.REACT_APP_API_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: QUERY }),
     })
+    if (loading) return 'Submitting...';
+    if (error) return `Submission error! ${error.message}`;
   }
 
   return (

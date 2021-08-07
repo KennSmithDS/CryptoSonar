@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
+// import {getUserWallets} from '../utils/queries/graphqlQueries'
+import { gql, useQuery } from '@apollo/client'
+
+const getUserWallets = gql`
+    query GetUserWallets($id: ID) {
+        user(id: $id) {
+        id
+        wallets {
+            alias
+            address
+            }
+        }
+    }
+`;
 
 export function ListWallets(props) {
   const [walletList, setWalletList] = useState([])
 
-  const QUERY = `query{
-    user(id: "${props.userID}") {
-      id
-      wallets {
-        alias
-        address
-      }
-    }
-  }`;
-
-  useEffect(() => {
-    fetch(process.env.REACT_APP_API_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: QUERY }),
-    }).then((response) => response.json())
-      .then((data) => setWalletList(data.data.user.wallets));
+  const { data, refetch } = useQuery(getUserWallets, {
+    variables: {id: props.userID },
+    onCompleted: (d) => setWalletList(data.user.wallets)
   });
+  
+  if(props.submitted){
+    refetch();
+  } 
 
   const ItemizedWallets = walletList.map((wallet, i)  => (        
     <ListGroup.Item action onClick={()=>console.log(wallet.address)} variant="light" key={i}>
