@@ -15,16 +15,22 @@ export function ListWallets(props) {
     refetch();
   } 
 
-  const ItemizedWallets = walletList.map((wallet, i)  => (        
-    <ListGroup.Item action onClick={()=>console.log(wallet.address)} variant="light" key={i}>
-      {wallet.alias}
-    </ListGroup.Item>
-  ))
+  const ItemizedWallets =() => {
+    return(
+      walletList.map((wallet, i)  => (        
+        <ListGroup.Item action onClick={()=>console.log(wallet.address)} variant="light" key={i}>
+          {wallet.alias}
+        </ListGroup.Item>
+      ))
+    )
+  }
 
-  return(            
+  return(
+    <div>            
       <ListGroup defaultActiveKey={"wallet-list-active-key"} key={"wallet-list-key"}>
-          {ItemizedWallets}     
-      </ListGroup>    
+          <ItemizedWallets />  
+      </ListGroup>
+    </div>    
   )
 }
 
