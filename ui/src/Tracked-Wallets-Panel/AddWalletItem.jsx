@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
 import {Modal, Button, Container, Form} from 'react-bootstrap'
-import { gql, useMutation } from '@apollo/client';
-
-const addWallet = gql`
-    mutation ($alias: String!, $address: String!, $userId: ID!) {
-        addWallet(alias: $alias, address: $address, userId: $userId) {
-            id
-            alias
-            address
-            userId
-      }
-    }
-`;
+import { useMutation } from '@apollo/client';
+import { ADD_WALLET } from '../utils/queries/graphqlQueries'
 
 export const  AddWalletItem = (props) => {
   const { showModal, setShowModal } = props
@@ -31,7 +21,7 @@ export const  AddWalletItem = (props) => {
       [name]: value
     }));
   };
-  const [addWalFunc, { loading, error }] = useMutation(addWallet);
+  const [addWalFunc, { loading, error }] = useMutation(ADD_WALLET);
     
   const SendData = (inputs) => {
     addWalFunc({

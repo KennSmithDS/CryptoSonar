@@ -20,27 +20,27 @@ const getWallets = gql`
     }
 `;
 
-const getUserWallets = gql`
-    query GetUserWallets($id: ID) {
-        user(id: $id) {
-        id
-        wallets {
-            alias
-            address
-            }
-        }
-    }
-`;
-
-const addWallet = gql`
-    mutation ($alias: String!, $address: String!, $userId: ID!) {
-        addWallet(alias: $alias, address: $address, userId: $userId) {
-            id
-            alias
-            address
-            userId
+const GET_USER_WALLETS = gql`
+  query GetUserWallets($id: ID) {
+    user(id: $id) {
+    id
+    wallets {
+      alias
+      address
       }
     }
+  }
+`;
+
+const ADD_WALLET = gql`
+  mutation ($alias: String!, $address: String!, $userId: ID!) {
+    addWallet(alias: $alias, address: $address, userId: $userId) {
+      id
+      alias
+      address
+      userId
+    }
+  }
 `;
 
 const removeWallet = gql`
@@ -71,4 +71,4 @@ const removeUser = gql`
     }
 `;
 
-export { getUsers, getWallets, getUserWallets, addWallet, removeWallet, addUser, removeUser };
+export { getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, removeWallet, addUser, removeUser };

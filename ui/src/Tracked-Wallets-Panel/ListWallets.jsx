@@ -1,24 +1,12 @@
 import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
-// import {getUserWallets} from '../utils/queries/graphqlQueries'
-import { gql, useQuery } from '@apollo/client'
-
-const getUserWallets = gql`
-    query GetUserWallets($id: ID) {
-        user(id: $id) {
-        id
-        wallets {
-            alias
-            address
-            }
-        }
-    }
-`;
+import {GET_USER_WALLETS} from '../utils/queries/graphqlQueries'
+import { useQuery } from '@apollo/client'
 
 export function ListWallets(props) {
   const [walletList, setWalletList] = useState([])
 
-  const { data, refetch } = useQuery(getUserWallets, {
+  const { data, refetch } = useQuery(GET_USER_WALLETS, {
     variables: {id: props.userID },
     onCompleted: (d) => setWalletList(data.user.wallets)
   });
