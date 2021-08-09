@@ -25,6 +25,7 @@ const GET_USER_WALLETS = gql`
     user(id: $id) {
     id
     wallets {
+      id
       alias
       address
       }
@@ -43,7 +44,7 @@ const ADD_WALLET = gql`
   }
 `;
 
-const removeWallet = gql`
+const REMOVE_WALLET = gql`
     mutation ($id: ID!) {
         removeWallet(id: $id) {
             id
@@ -71,4 +72,4 @@ const removeUser = gql`
     }
 `;
 
-export { getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, removeWallet, addUser, removeUser };
+export { getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, addUser, removeUser };

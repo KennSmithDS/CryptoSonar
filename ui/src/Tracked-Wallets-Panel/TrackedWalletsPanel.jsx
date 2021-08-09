@@ -1,32 +1,35 @@
 import React, { useState } from 'react'
 import { Container, Button } from 'react-bootstrap'
-import { PlusCircle, DashCircle } from 'react-bootstrap-icons'
+import { PlusCircle } from 'react-bootstrap-icons'
 import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
+import { DeleteWalletButton } from './DeleteWalletButton'
 import { ListWallets } from './ListWallets'
 
 export function TrackedWalletsPanel(props) {
   const [showModal, setShowModal] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  
+  const [selected, setSelected] = useState('');
+  const [refetch, setRefetch] = useState(false);
+
   function handleSubmitted(val){
-    setSubmitted(val)
+    setRefetch(val)
   }
 
   const openModal = () => {
     setShowModal(prev => !prev)
   }
 
+const BUTTON_SIZE=45
   return (
     <div>
       <h3>Tracked Wallets Panel </h3>
       <Container className="wallets-list-container">
-        <ListWallets submitted={submitted} userID={props.userID}/>
+        <ListWallets selected={selected} setSelected={(val) => setSelected(val)} refetch={refetch} setRefetch={val=>setRefetch(val)} userID={props.userID}/>
       </Container>
       <Container className="add-delete-wallet">
-        <Button variant="outline-secondary" onClick={openModal}><PlusCircle size={50} /></Button>
+        <Button variant="outline-secondary" onClick={openModal}><PlusCircle size={BUTTON_SIZE} /></Button>
           <AddWalletItem submitted={handleSubmitted} userID={props.userID} showModal={showModal} setShowModal={setShowModal} />
-        <Button variant="outline-danger"><DashCircle size={50} /></Button>
+        <DeleteWalletButton selected={selected} submitted={handleSubmitted} size={BUTTON_SIZE} />
       </Container>      
     </div>
   )
