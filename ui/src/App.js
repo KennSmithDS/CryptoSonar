@@ -13,30 +13,26 @@ const client = new ApolloClient({
 });
 
 
-// TODO: Preserve userLogin info upon browser refresh
 function App() {
   const [user, setUser] = useState('')
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
   
   useEffect(() => {
-    const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
-    setUser(userCreds)
-  }, [setUser]);
+      const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
+      setUser(userCreds)
+    
+  }, [setUser, userLoggedIn]);
 
-  function StoreUser(user) {  
-    localStorage.setItem('UserCredentials', JSON.stringify(user));
-  }
 
   return (
     <Router >
       <ApolloProvider client={client}>
-          <Switch>
-            <Route path="/login" component={Login}>
-              <Login user={(val) => StoreUser(val)}/>
-            </Route>
-            <Route exact path="/" component={Layout}>
-              <Layout user={user}/>
-            </Route>
-          </Switch>        
+        <Route path="/login" component={Login}>
+          <Login userLoggedIn={setUserLoggedIn}/>
+        </Route>
+        <Route exact path="/" component={Layout}>
+          <Layout user={user}/>
+        </Route>
       </ApolloProvider>
     </Router>
   );

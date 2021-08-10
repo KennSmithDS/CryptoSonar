@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 
 import { Broadcast } from 'react-bootstrap-icons';
@@ -18,6 +18,9 @@ export const Login = (props) => {
     setShowModal(prev => !prev)
   }
 
+  const [showAlert, setShowAlert] = useState(false);
+
+
   const history = useHistory();
   
   const QUERY = `
@@ -34,20 +37,53 @@ export const Login = (props) => {
       body: JSON.stringify({ query: QUERY }),	
     }).then((response) => response.json())	
       .then((data) => {
-        props.user(data.data.userLogin);
+        VerifyData(data.data)
+        // console.log(data.data)
+        // props.user(data.data.userLogin);
       });    
   }
   
+  const VerifyData = data => {
+    if(data.userLogin !== null){
+      storeUser(data.userLogin)
+      history.push(`/`)
+    } else{
+      setShowAlert(true)
+    } 
+  }
+
   const HandleSubmit = (event) => {
     event.preventDefault();
-    SendData(formState);
-    history.push(`/`)
+    SendData(formState);    
   }
+
+  const storeUser = (user) =>  {  
+    localStorage.setItem('UserCredentials', JSON.stringify(user));
+    props.userLoggedIn(true)
+  }
+
 
   const handleChange = (e) => {
     setFormState({...formState,
       [e.target.id]: e.target.value
     })
+  }
+
+  const NoUserFoundAlert = () => {  
+    return(
+    showAlert ?
+        <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
+          <Alert.Heading>No User Found!</Alert.Heading>
+          <p>
+            Please create an account to proceed. 
+          </p>
+          <p>       
+            Username: SpongeBob              
+            Password: bob
+          </p>
+        </Alert>      
+    : null
+    )
   }
 
   return (
@@ -71,9 +107,9 @@ export const Login = (props) => {
               <Button variant="primary" type="submit">Sign-in</Button>
               <Button variant="link" onClick={openModal} >Create Account</Button>
                 <CreateAccount showModal={showModal} setShowModal={setShowModal} />
-
             </Row>
           </Form>
+          <NoUserFoundAlert />
         </Col>
       </Row>
     </Container>

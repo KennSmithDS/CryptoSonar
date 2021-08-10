@@ -27,7 +27,11 @@ export function NavBarPanel(props) {
               <AccountSettings showModal={showModal} setShowModal={setShowModal} />
               <NavDropdown.Divider />
               <LinkContainer to="/login">
-                <NavDropdown.Item>Logout</NavDropdown.Item>
+                <NavDropdown.Item 
+                onClick={()=>{localStorage.removeItem('UserCredentials')}}
+              >
+                Logout
+              </NavDropdown.Item>
               </LinkContainer>
             </NavDropdown>
           </Nav>

@@ -10,8 +10,9 @@ https://crypto-sonar-ui.herokuapp.com/
 * Back-end GraphQL IDE
 https://crypto-sonar-api.herokuapp.com/graphql
 
-# About:
+## About:
 This project was started with starter code from `react-create-app`.
+Note: Browser preferance for GoogleChrome 
 
 ## Contributes made by Joffrey:
 ### iter 1
@@ -38,7 +39,8 @@ This project was started with starter code from `react-create-app`.
   * Implemented Signin page and create account modal
   * Connected Signout functionality 
   * Connected Delete wallet functionality
-* Software Developmentchanges:
+  * User credentials are persisted during browser refresh
+* Software Development changes:
   * Passed UserId from signin down to layout and accross child components
   * Replaced fetch/query calls with gql/apollo-client
   * Debugged rerendering issues in the tracked wallets pannel
