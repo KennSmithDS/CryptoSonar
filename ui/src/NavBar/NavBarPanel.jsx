@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import './NavBarPanel.css'
 import {Broadcast} from 'react-bootstrap-icons';
 
-import { AccountSettings } from '../AccountSettings'
+import { AccountSettings } from './AccountSettings'
 
 
 export function NavBarPanel(props) {

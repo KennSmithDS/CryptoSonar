@@ -5,11 +5,19 @@ import { useHistory } from 'react-router-dom';
 import { Broadcast } from 'react-bootstrap-icons';
 import './Login.css'
 
+import { CreateAccount } from './CreateAccount';
+
 export const Login = (props) => {
   const [formState, setFormState] = useState({
     username: "SpongeBob",
     password: "bob"
   });
+
+  const [showModal, setShowModal] = useState(false)
+  const openModal = () => {
+    setShowModal(prev => !prev)
+  }
+
   const history = useHistory();
   
   const QUERY = `
@@ -61,7 +69,9 @@ export const Login = (props) => {
             </Form.Group>
             <Row>
               <Button variant="primary" type="submit">Sign-in</Button>
-              <Button variant="link">Create Account</Button>
+              <Button variant="link" onClick={openModal} >Create Account</Button>
+                <CreateAccount showModal={showModal} setShowModal={setShowModal} />
+
             </Row>
           </Form>
         </Col>
