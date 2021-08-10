@@ -1,11 +1,21 @@
+.price-chart-container {
+	flex-direction: row;
+}
+
+/*
 .embedded-price-chart {
     width: 100%;
     height: 100%;
 }
 
-.price-chart-container {
-	/* background-color: white; */
-	border: 2px solid Black;
-	padding: 0px;
-	border-radius: 4px;
-}
+.iframe-container {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .iframe-container iframe {
+     border: 0;
+     height: 100%;
+     width: 100%;
+  }
+*/

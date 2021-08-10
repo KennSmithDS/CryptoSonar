@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import AlertItem from './AlertItem';
 
-export default function AlertTable(props) {
+export function AlertTable(props) {
 
     const DUMMY_ALERTS = [
         {
@@ -73,3 +73,5 @@ export default function AlertTable(props) {
         </Table>
     );
 }
+
+export default AlertTable;
