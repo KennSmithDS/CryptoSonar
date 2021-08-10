@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
@@ -9,6 +9,7 @@ import PricePanel from '../Chart/PricePanel'
 import './Layout.css';
 
 export const Layout = (props) => {
+  const [selectedWallet, setSelectedWallet] = useState('')
 
   return (
     <Container>
@@ -21,19 +22,23 @@ export const Layout = (props) => {
         <Col md={3}>
           <Row>
             <Col className="tracked-wallet" md={12}>
-              <TrackedWalletsPanel userID={props.user.id} />
+              <TrackedWalletsPanel 
+                userID={props.user.id} 
+                selectedWallet={selectedWallet} 
+                setSelectedWallet={(val) =>setSelectedWallet(val)} 
+              />
             </Col>
           </Row>
         </Col>
         <Col md={9}>
           <Row>
             <Col className="alerts-panel" md={12}>
-              <AlertsPanel />
+              <AlertsPanel selectedWallet={selectedWallet} />
             </Col>
           </Row>
           <Row>
             <Col className="resources-panel" md={12}>
-              <ResourcesPanel />
+              <ResourcesPanel selectedWallet={selectedWallet} />
             </Col>
           </Row>
         </Col>

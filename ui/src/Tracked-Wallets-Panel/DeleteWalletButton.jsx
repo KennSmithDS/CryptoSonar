@@ -5,6 +5,8 @@ import { useMutation } from '@apollo/client'
 import { REMOVE_WALLET } from '../utils/queries/graphqlQueries'
 
 export const DeleteWalletButton = (props) => {
+  const { id } = props.selectedWallet
+
   const [delWalFunc, { loading, error }] = useMutation(REMOVE_WALLET);
   
   const handleClick = (val) => {
@@ -24,7 +26,12 @@ export const DeleteWalletButton = (props) => {
 
   return (
     <>
-      <Button variant="outline-danger" onClick={()=>handleClick(props.selected)}><DashCircle size={props.size} /></Button>
+      <Button 
+        variant="outline-danger" 
+        onClick={()=>handleClick(id)}
+      >
+        <DashCircle size={props.size} />
+      </Button>
     </>
   )
 }

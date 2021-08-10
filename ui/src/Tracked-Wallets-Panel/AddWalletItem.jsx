@@ -47,11 +47,27 @@ export const  AddWalletItem = (props) => {
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formWalletAddress">
                   <Form.Label>Wallet Address:</Form.Label>
-                  <Form.Control required type="string" placeholder="Wallet Address" name="walletAddress" onChange={handleInputChange} value={inputs.walletAddress || ''}/>
+                  <Form.Control 
+                    required 
+                    type="string" 
+                    placeholder="Wallet Address" 
+                    name="walletAddress" 
+                    onChange={handleInputChange} 
+                    value={inputs.walletAddress || ''}
+                  />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formAddressAlias">
-                  <Form.Label>Address Alias:</Form.Label>
-                  <Form.Control required type="string" placeholder="Address Alias" name="walletAlias" onChange={handleInputChange} value={inputs.walletAlias || ''}/>
+                  <Form.Label>
+                    Address Alias:
+                  </Form.Label>
+                  <Form.Control 
+                    required 
+                    type="string" 
+                    placeholder="Address Alias" 
+                    name="walletAlias" 
+                    onChange={handleInputChange} 
+                    value={inputs.walletAlias || ''}
+                  />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Submit

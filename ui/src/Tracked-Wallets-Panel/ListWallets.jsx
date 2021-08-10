@@ -21,7 +21,12 @@ export function ListWallets(props) {
   const ItemizedWallets = () => {
     return(
       walletList.map((wallet, i)  => (            
-        <ListGroup.Item action onClick={()=>handleClick(wallet.id)} variant="light" key={i}>
+        <ListGroup.Item 
+          action 
+          onClick={()=>handleClick(wallet)} 
+          variant="light" 
+          key={i}
+        >
           {wallet.alias}
         </ListGroup.Item>
       ))
@@ -37,8 +42,11 @@ export function ListWallets(props) {
 
   return(
     <div>            
-      <ListGroup defaultActiveKey={"wallet-list-active-key"} key={"wallet-list-key"}>
-          <ItemizedWallets />  
+      <ListGroup 
+        defaultActiveKey={"wallet-list-active-key"} 
+        key={"wallet-list-key"}
+      >
+        <ItemizedWallets />  
       </ListGroup>
     </div>    
   )

@@ -7,8 +7,10 @@ import { DeleteWalletButton } from './DeleteWalletButton'
 import { ListWallets } from './ListWallets'
 
 export function TrackedWalletsPanel(props) {
+  const wallet = props.selectedWallet
+  const userID = props.userID
+
   const [showModal, setShowModal] = useState(false)
-  const [selected, setSelected] = useState('');
   const [refetch, setRefetch] = useState(false);
 
   function handleSubmitted(val){
@@ -24,12 +26,28 @@ const BUTTON_SIZE=45
     <div>
       <h3>Tracked Wallets Panel </h3>
       <Container className="wallets-list-container">
-        <ListWallets selected={selected} setSelected={(val) => setSelected(val)} refetch={refetch} setRefetch={val=>setRefetch(val)} userID={props.userID}/>
+        <ListWallets 
+          setSelected={(val) => props.setSelectedWallet(val)} 
+          refetch={refetch} 
+          setRefetch={val=>setRefetch(val)} 
+          userID={userID}
+        />
       </Container>
       <Container className="add-delete-wallet">
-        <Button variant="outline-secondary" onClick={openModal}><PlusCircle size={BUTTON_SIZE} /></Button>
-          <AddWalletItem submitted={handleSubmitted} userID={props.userID} showModal={showModal} setShowModal={setShowModal} />
-        <DeleteWalletButton selected={selected} submitted={handleSubmitted} size={BUTTON_SIZE} />
+        <Button variant="outline-secondary" onClick={openModal}>
+          <PlusCircle size={BUTTON_SIZE} />
+        </Button>
+          <AddWalletItem 
+            submitted={handleSubmitted} 
+            userID={userID} 
+            showModal={showModal} 
+            setShowModal={setShowModal} 
+          />
+        <DeleteWalletButton 
+          selectedWallet={wallet} 
+          submitted={handleSubmitted} 
+          size={BUTTON_SIZE} 
+        />
       </Container>      
     </div>
   )
