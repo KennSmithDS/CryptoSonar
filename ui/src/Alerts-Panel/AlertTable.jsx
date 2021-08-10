@@ -37,6 +37,17 @@ export function AlertTable(props) {
             usdValue: 8.24,
             hash: "0x5e3527eab9b7559f7be6c13d81927ffe37adb17ced20b6f236387d23bc0707f0",
             timeStamp: 1627835530
+        },
+        {
+            id: "4",
+            contractAddress: "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3",
+            tokenName: "Safemoon",
+            tokenSymbol: "SAFEMOON",
+            value: 365714855000631314,
+            tokenDecimal: 9,
+            usdValue: 91.62,
+            hash: "0x29cda10963a59a9c5a06ab1697dc12015f87b3831db54bea67438e1ee3ce9c74",
+            timeStamp: 1615996397
         }
     ];
 
