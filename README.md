@@ -13,7 +13,8 @@ https://crypto-sonar-api.herokuapp.com/graphql
 # About:
 This project was started with starter code from `react-create-app`.
 
-## Contributions made by Joffrey:
+## Contributes made by Joffrey:
+### iter 1
 * Front-end Development
   * Containerizing initial page design skeleton
   * Implementing Third-Party Libaries
@@ -29,9 +30,20 @@ This project was started with starter code from `react-create-app`.
   * Add wallet form  
 * Deploying Front-end to Heroku
   * Added `"serve": "^12.0.0"` dependancy necessary for deployment to Heroku
-
 ![HerokuDeployed](./images/iter1_heroku.PNG)
 ![addWalletModal](./images/iter1_addWallet.PNG)
+
+### iter 2
+* User features:
+  * Implemented Signin page and create account modal
+  * Connected Signout functionality 
+  * Connected Delete wallet functionality
+* Software Developmentchanges:
+  * Passed UserId from signin down to layout and accross child components
+  * Replaced fetch/query calls with gql/apollo-client
+  * Debugged rerendering issues in the tracked wallets pannel
+    * addWallet child component updates sibling component listWallets by trigerring an update to the Wallet pannel parent state  
+
 
 ## Contributes made by Kendall:
 * Back-end Development
