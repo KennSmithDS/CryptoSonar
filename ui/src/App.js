@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -16,12 +16,22 @@ const client = new ApolloClient({
 // TODO: Preserve userLogin info upon browser refresh
 function App() {
   const [user, setUser] = useState('')
+  
+  useEffect(() => {
+    const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
+    setUser(userCreds)
+  }, [setUser]);
+
+  function StoreUser(user) {  
+    localStorage.setItem('UserCredentials', JSON.stringify(user));
+  }
+
   return (
     <Router >
       <ApolloProvider client={client}>
           <Switch>
             <Route path="/login" component={Login}>
-              <Login user={(val) => setUser(val)}/>
+              <Login user={(val) => StoreUser(val)}/>
             </Route>
             <Route exact path="/" component={Layout}>
               <Layout user={user}/>
