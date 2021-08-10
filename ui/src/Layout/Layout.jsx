@@ -8,21 +8,20 @@ import { NavBarPanel } from '../NavBar/NavBarPanel'
 
 import './Layout.css';
 
-const userID ="610db0d9a4118a569a48654d"
 
-export const Layout = () => {
+export const Layout = (props) => {
   return (
     <Container>
       <Row>
         <Col className="NavBar" md={12}>
-          <NavBarPanel />
+          <NavBarPanel user={props.user}/>
         </Col>
       </Row>
       <Row>
         <Col md={3}>
           <Row>
             <Col className="tracked-wallet" md={12}>
-              <TrackedWalletsPanel userID={userID}/>
+              <TrackedWalletsPanel userID={props.user.id}/>
             </Col>
           </Row>
         </Col>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import './NavBarPanel.css'
 import {Broadcast} from 'react-bootstrap-icons';
 
 import { AccountSettings } from '../AccountSettings'
 
 
-export function NavBarPanel() {
+export function NavBarPanel(props) {
   const [showModal, setShowModal] = useState(false)
   const openModal = () => {
     setShowModal(prev => !prev)
@@ -21,11 +22,13 @@ export function NavBarPanel() {
             <Navbar.Brand >CryptoSONAR</Navbar.Brand>
           </Nav>
           <Nav>
-            <NavDropdown title="Username" id="collasible-nav-dropdown">
+            <NavDropdown title={props.user.userName} id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={openModal}>Account Settings</NavDropdown.Item>
               <AccountSettings showModal={showModal} setShowModal={setShowModal} />
               <NavDropdown.Divider />
-              <NavDropdown.Item  >Logout</NavDropdown.Item>
+              <LinkContainer to="/login">
+                <NavDropdown.Item>Logout</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

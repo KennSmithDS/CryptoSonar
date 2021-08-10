@@ -6,6 +6,7 @@
 		"node": "10.x",
 		"npm": "6.x"
 	},
+	"homepage": "/login",
 	"dependencies": {
 		"@apollo/client": "^3.4.5",
 		"@testing-library/jest-dom": "^5.11.4",
@@ -20,6 +21,8 @@
 		"react-bootstrap": "^2.0.0-beta.4",
 		"react-bootstrap-icons": "^1.5.0",
 		"react-dom": "^17.0.2",
+		"react-router-bootstrap": "^0.25.0",
+		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
 		"serve": "^12.0.0",
 		"web-vitals": "^1.0.1"
