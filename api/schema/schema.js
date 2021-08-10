@@ -5,7 +5,7 @@ const { GraphQLObjectType, GraphQLBoolean, GraphQLString, GraphQLInt, GraphQLID,
 
 const UserType = new GraphQLObjectType({
     name: 'User',
-    fields: ( ) => ({
+    fields: () => ({
         id: { type: GraphQLID },
         userName: { type: GraphQLString },
         userPassword: { type: GraphQLString },
@@ -21,7 +21,7 @@ const UserType = new GraphQLObjectType({
 
 const WalletType = new GraphQLObjectType({
     name: 'Wallet',
-    fields: ( ) => ({
+    fields: () => ({
         id: { type: GraphQLID },
         alias: { type: GraphQLString },
         address: { type: GraphQLString },
@@ -36,13 +36,26 @@ const Query = new GraphQLObjectType({
         user: {
             type: UserType,
             args: { id: { type: GraphQLID } },
-            resolve(parent, args){
+            resolve(parent, args) {
                 return User.findById(args.id);
+            }
+        },
+        userLogin: {
+            type: UserType,
+            args: {
+                userName: { type: new GraphQLNonNull(GraphQLString) },
+                userPassword: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parent, args) {
+                return User.findOne({
+                    userName: args.userName,
+                    userPassword: args.userPassword
+                })
             }
         },
         wallet: {
             type: WalletType,
-            args: { id: { type: GraphQLID }},
+            args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 return Wallet.findById(args.id);
             }
@@ -55,7 +68,7 @@ const Query = new GraphQLObjectType({
         },
         wallets: {
             type: new GraphQLList(WalletType),
-            resolve(parent,args) {
+            resolve(parent, args) {
                 return Wallet.find({});
             }
         }
