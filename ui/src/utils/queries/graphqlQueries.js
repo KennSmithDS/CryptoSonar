@@ -1,5 +1,13 @@
 import { gql } from '@apollo/client';
 
+const USER_LOGIN = gql`
+  query UserLogin($userName:String!, $userPassword:String!) {
+    userLogin(userName: $userName, userPassword: $userPassword) {
+      id 
+    }
+  }
+`;
+
 const getUsers = gql`
     query {
         users {
@@ -72,4 +80,4 @@ const removeUser = gql`
     }
 `;
 
-export { getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, addUser, removeUser };
+export { USER_LOGIN, getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, addUser, removeUser };
