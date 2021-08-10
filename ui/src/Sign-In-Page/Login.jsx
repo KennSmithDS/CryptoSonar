@@ -73,13 +73,11 @@ export const Login = (props) => {
     return(
     showAlert ?
         <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
-          <Alert.Heading>No User Found!</Alert.Heading>
-          <p>
-            Please create an account to proceed. 
-          </p>
-          <p>       
-            Username: SpongeBob              
-            Password: bob
+          <Alert.Heading><h5>Incorrect username or password!</h5></Alert.Heading>
+          <p> Please reenter or create an account to proceed.
+          <br/> <strong>Admin Use Only:</strong>
+          <br/> Username: SpongeBob 
+          <br/> Password: bob
           </p>
         </Alert>      
     : null
