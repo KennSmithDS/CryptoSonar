@@ -10,8 +10,8 @@ export function AccountSettings(props) {
 
   function handleClearWallet(){
     sendClearWalletData()
-    // Trigger walletList refresh
-    // close modal
+    props.setRefetch(true)
+    handleClose();
   }
 
   function sendClearWalletData() {

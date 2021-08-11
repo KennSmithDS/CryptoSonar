@@ -11,6 +11,7 @@ import './Layout.css';
 export const Layout = (props) => {
   const [selectedWallet, setSelectedWallet] = useState('')
   const [walletList, setWalletList] = useState([])
+  const [refetch, setRefetch] = useState(false)
 
   return (
     <Container>
@@ -19,6 +20,7 @@ export const Layout = (props) => {
           <NavBarPanel 
           user={props.user}
           walletList={walletList} 
+          setRefetch={setRefetch}
         />
         </Col>
       </Row>
@@ -27,6 +29,7 @@ export const Layout = (props) => {
           <Row>
             <Col className="tracked-wallet" md={12}>
               <TrackedWalletsPanel
+                refetch={refetch}
                 setWalletList={setWalletList}
                 userID={props.user.id} 
                 selectedWallet={selectedWallet} 

@@ -27,7 +27,8 @@ export function NavBarPanel(props) {
               <AccountSettings
                 walletList={props.walletList}
                 showModal={showModal} 
-                setShowModal={setShowModal} 
+                setShowModal={setShowModal}
+                setRefetch={props.setRefetch} 
               />
               <NavDropdown.Divider />
               <LinkContainer to="/login">

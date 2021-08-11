@@ -38,7 +38,7 @@ Note: Browser preferance for GoogleChrome
 * User features:
   * Changed landing page to `./login`
   * Implemented Signin page and create account modal
-    * Chosen username is shown in log in text box upon creating new account
+    * Chosen username is shown in the login text box upon creating new account
   * Connected Signout functionality 
   * Connected Delete wallet functionality
     * Debugged walletList rerendering
