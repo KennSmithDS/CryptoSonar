@@ -10,19 +10,24 @@ import './Layout.css';
 
 export const Layout = (props) => {
   const [selectedWallet, setSelectedWallet] = useState('')
+  const [walletList, setWalletList] = useState([])
 
   return (
     <Container>
       <Row>
         <Col className="NavBar" md={12}>
-          <NavBarPanel user={props.user} />
+          <NavBarPanel 
+          user={props.user}
+          walletList={walletList} 
+        />
         </Col>
       </Row>
       <Row>
         <Col md={3}>
           <Row>
             <Col className="tracked-wallet" md={12}>
-              <TrackedWalletsPanel 
+              <TrackedWalletsPanel
+                setWalletList={setWalletList}
                 userID={props.user.id} 
                 selectedWallet={selectedWallet} 
                 setSelectedWallet={(val) =>setSelectedWallet(val)} 

@@ -1,24 +1,61 @@
 import React from 'react'
 import {Modal, Button, Container} from 'react-bootstrap'
+import { useMutation } from '@apollo/client'
+import { REMOVE_WALLET } from '../utils/queries/graphqlQueries'
 
-export function AccountSettings({ showModal, setShowModal }) {
-  const handleClose = () => setShowModal(false);
+export function AccountSettings(props) {
+  const handleClose = () => props.setShowModal(false);
+  
+  const [delUserWallets, { loading, error }] = useMutation(REMOVE_WALLET);
+
+  function handleClearWallet(){
+    sendClearWalletData()
+    // Trigger walletList refresh
+    // close modal
+  }
+
+  function sendClearWalletData() {
+    const walletListIds = props.walletList.map(wallet => wallet.id)
+    for(let i=0; i < walletListIds.length; i++) {
+      delUserWallets({
+        variables: { 
+          id: walletListIds[i]
+        },
+      });
+      if (loading) return console.log('Submitting...');
+      if (error) return console.log(`Submission error! ${error.message}`);
+    }
+  }
+
+  function handleDeleteAccount(props) {
+
+  }
   
   return (
     <>
-      {showModal ?
-        <Modal show={showModal} onHide={handleClose}>
+      {props.showModal ?
+        <Modal show={props.showModal} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Account Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>
               <h5>Clear Tracking:</h5>
-              <Button variant="secondary">Clear Wallet-Tracking</Button>
+              <Button 
+                variant="secondary" 
+                onClick={handleClearWallet}
+              >
+                Clear Wallet-Tracking
+              </Button>
             </Container>
             <Container>
               <h5>Other:</h5>
-              <Button variant='danger'>Delete Account</Button>
+              <Button 
+                variant='danger' 
+                onClick={()=>handleDeleteAccount}
+              >
+                Delete Account
+              </Button>
             </Container>
           </Modal.Body>
           <Modal.Footer>

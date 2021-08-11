@@ -24,7 +24,11 @@ export function NavBarPanel(props) {
           <Nav>
             <NavDropdown title={props.user.userName} id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={openModal}>Account Settings</NavDropdown.Item>
-              <AccountSettings showModal={showModal} setShowModal={setShowModal} />
+              <AccountSettings
+                walletList={props.walletList}
+                showModal={showModal} 
+                setShowModal={setShowModal} 
+              />
               <NavDropdown.Divider />
               <LinkContainer to="/login">
                 <NavDropdown.Item 

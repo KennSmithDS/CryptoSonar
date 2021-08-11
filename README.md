@@ -48,7 +48,8 @@ Note: Browser preferance for GoogleChrome
   * Passed UserId from signin down to layout and accross child components
   * Replaced fetch/query calls with gql/apollo-client
   * Debugged rerendering issues in the tracked wallets pannel
-    * addWallet child component updates sibling component listWallets by trigerring an update to the Wallet pannel parent state  
+    * addWallet child component updates sibling component listWallets by trigerring an update to the Wallet pannel parent state
+  * Connected delete all wallets in user account settings in UI to backend fetch call
   
 ![CreateAccount](./images/iter2_create_account.PNG)
 ![UserSignIn](./images/iter2_user_signin.PNG)

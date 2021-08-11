@@ -12,7 +12,7 @@ export function TrackedWalletsPanel(props) {
 
   const [showModal, setShowModal] = useState(false)
   const [refetch, setRefetch] = useState(false);
-
+  
   function handleSubmitted(val){
     setRefetch(val)
   }
@@ -26,7 +26,8 @@ const BUTTON_SIZE=45
     <div>
       <h3>Tracked Wallets Panel </h3>
       <Container className="wallets-list-container">
-        <ListWallets 
+        <ListWallets
+          setWalletList={props.setWalletList} 
           setSelected={(val) => props.setSelectedWallet(val)} 
           refetch={refetch} 
           setRefetch={val=>setRefetch(val)} 
