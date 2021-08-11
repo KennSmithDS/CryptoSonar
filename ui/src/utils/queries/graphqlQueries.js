@@ -61,7 +61,7 @@ const REMOVE_WALLET = gql`
     }
 `;
 
-const addUser = gql`
+const ADD_USER = gql`
     mutation ($userName: String!, $userPassword: String!) {
         addUser(userName: $userName, userPassword: $userPassword) {
             id
@@ -80,4 +80,4 @@ const removeUser = gql`
     }
 `;
 
-export { USER_LOGIN, getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, addUser, removeUser };
+export { USER_LOGIN, getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, ADD_USER, removeUser };

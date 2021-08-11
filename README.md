@@ -36,16 +36,22 @@ Note: Browser preferance for GoogleChrome
 
 ### iter 2
 * User features:
+  * Changed landing page to `./login`
   * Implemented Signin page and create account modal
+    * Chosen username is shown in log in text box upon creating new account
   * Connected Signout functionality 
   * Connected Delete wallet functionality
-  * User credentials are persisted during browser refresh
+    * Debugged walletList rerendering
+  * Persisted UserCredential accross state changes and browser refresh via user's local token storage.
+    * Tokens are created/replaced upon user signin and destroyed upon user log out.
 * Software Development changes:
   * Passed UserId from signin down to layout and accross child components
   * Replaced fetch/query calls with gql/apollo-client
   * Debugged rerendering issues in the tracked wallets pannel
     * addWallet child component updates sibling component listWallets by trigerring an update to the Wallet pannel parent state  
-
+  
+![CreateAccount](./images/iter2_create_account.PNG)
+![UserSignIn](./images/iter2_user_signin.PNG)
 
 ## Contributes made by Kendall:
 * Back-end Development

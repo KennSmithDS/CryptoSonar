@@ -14,7 +14,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-
 function App() {
   const [user, setUser] = useState('')
   const [userLoggedIn, setUserLoggedIn] = useState(false)
@@ -28,8 +27,6 @@ function App() {
       setUserLoggedIn(false)
     }    
   }, [setUser, userLoggedIn]);
-
-
 
   return (
     <Router >

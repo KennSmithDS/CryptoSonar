@@ -93,18 +93,42 @@ export const Login = (props) => {
           <Form className="sign-in-form" onSubmit={HandleSubmit}>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter Username" onChange={handleChange} value={formState.username || ''} />
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Username" 
+                onChange={handleChange} 
+                value={formState.username || ''} 
+              />
               <Form.Text className="text-muted">
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange} value={formState.password || ''} />
+              <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                onChange={handleChange} 
+                value={formState.password || ''} 
+              />
             </Form.Group>
             <Row>
-              <Button variant="primary" type="submit">Sign-in</Button>
-              <Button variant="link" onClick={openModal} >Create Account</Button>
-                <CreateAccount showModal={showModal} setShowModal={setShowModal} />
+              <Button 
+                variant="primary" 
+                type="submit"
+              >
+                Sign-in
+              </Button>
+              <Button 
+                variant="link" 
+                onClick={openModal} 
+              >
+                Create Account
+              </Button>
+                <CreateAccount 
+                  showModal={showModal} 
+                  setShowModal={setShowModal} 
+                  setUserFormState={formState} 
+                />
             </Row>
           </Form>
           <NoUserFoundAlert />
