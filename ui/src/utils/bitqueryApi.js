@@ -1,16 +1,16 @@
 require('dotenv').config();
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 const { usdValueQuery } = require('./queries/bitqueryQueries');
 // const { testQuery } = require('./queries/testBitqueryQuery');
 
-const apiKey = process.env.BQ_API_KEY;
-const url = process.env.BQ_URL;
+const bqApiKey = process.env.BQ_API_KEY;
+const url = process.env.BQ_API_ENDPOINT;
 
-async function makeBitQueryCall(url = '', key = '', query = {}) {
+export async function makeBitQueryCall(url = url, key = bqApiKey, query = {}) {
     try {
         console.log(`Bitquery.io URL: ${url}`);
-        console.log(`Bitquery.io API key: ${key}`) ;
-    
+        console.log(`Bitquery.io API key: ${key}`);
+
         const payload = {
             method: 'POST',
             headers: {
@@ -20,9 +20,9 @@ async function makeBitQueryCall(url = '', key = '', query = {}) {
             body: JSON.stringify({ query: query })
         };
         console.log(payload);
-    
+
         const response = await fetch(url, payload);
-        return response.json();   
+        return response.json();
     } catch (err) {
         console.log(err);
     }
@@ -33,4 +33,5 @@ async function makeBitQueryCall(url = '', key = '', query = {}) {
 //         console.log(data.data.ethereum.dexTrades);
 //     });
 
-module.exports = { makeBitQueryCall };
+// module.exports = { makeBitQueryCall };
+export default makeBitQueryCall;

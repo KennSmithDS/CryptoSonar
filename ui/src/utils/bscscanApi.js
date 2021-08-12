@@ -1,15 +1,12 @@
-require('dotenv').config();
-const fetch = require('node-fetch');
-const { usdValueQuery } = require('./queries/bitqueryQueries');
+// const fetch = require('node-fetch');
+// const { usdValueQuery } = require('./queries/bitqueryQueries');
 
-const bscApiKey = process.env.BSC_API_KEY;
-console.log(bscApiKey);
-
-async function makeBscScanCall(url = '', walletAddress = '', startBlock = '', endBlock = '', sortOrder = '', apiKey = '') {
+export async function makeBscScanCall(url = '', walletAddress = '', startBlock = '0', endBlock = '999999999', sortOrder = 'desc', apiKey = '') {
     try {
+
         const fullBscUrl = `${url}&address=${walletAddress}&startblock=${startBlock}&endblock=${endBlock}&sort=${sortOrder}&apikey=${apiKey}`;
         console.log(`Bscscan.com URL: ${fullBscUrl}`);
-    
+
         const payload = {
             method: 'GET',
             headers: {
@@ -17,9 +14,9 @@ async function makeBscScanCall(url = '', walletAddress = '', startBlock = '', en
             }
         };
         console.log(payload);
-    
+
         const response = await fetch(fullBscUrl, payload);
-        return response.json();   
+        return response.json();
     } catch (err) {
         console.log(err);
     }
@@ -40,4 +37,5 @@ async function makeBscScanCall(url = '', walletAddress = '', startBlock = '', en
 //         })
 //     });
 
-module.exports = { makeBscScanCall };
+// module.exports = { makeBscScanCall };
+export default makeBscScanCall;
