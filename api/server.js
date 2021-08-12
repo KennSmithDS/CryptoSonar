@@ -26,10 +26,6 @@ const startServer = async () => {
             schema, graphiql: true
         }));
 
-        app.get("/*", function (req, res) {
-            res.sendFile(path.resolve(__dirname, '../ui/build', 'index.html'));
-        })
-
         // Listen on server port for requests
         app.listen({ port }, () => {
             console.log(`Server connected and listening on ${port}`);

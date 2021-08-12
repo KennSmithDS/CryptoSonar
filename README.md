@@ -14,8 +14,8 @@ https://crypto-sonar-api.herokuapp.com/graphql
 This project was started with starter code from `react-create-app`.
 Note: Browser preferance for GoogleChrome 
 
-## Contributes made by Joffrey:
-### iter 1
+## Contributions made by Joffrey:
+### Iteration 1
 * Front-end Development
   * Containerizing initial page design skeleton
   * Implementing Third-Party Libaries
@@ -34,7 +34,7 @@ Note: Browser preferance for GoogleChrome
 ![HerokuDeployed](./images/iter1_heroku.PNG)
 ![addWalletModal](./images/iter1_addWallet.PNG)
 
-### iter 2
+### Iteration 2
 * User features:
   * Users are initially directed to `./login`
     * Chosen username is shown in the login text box upon creating new account
@@ -57,7 +57,8 @@ Note: Browser preferance for GoogleChrome
 ![UserSignIn](./images/iter2_user_signin.PNG)
 ![confirmDelete](./image/iter2_delete_user_account)
 
-## Contributes made by Kendall:
+## Contributions made by Kendall:
+### Iteration 1
 * Back-end Development
   * Deployed MongoDB database to Atlas cluster
   * Designed GraphQL Schema
@@ -83,3 +84,5 @@ Note: Browser preferance for GoogleChrome
 ![MongoDBAtlasDeployed](./images/iter1_mongodb_deployment.png)
 ![DatabaseInitialization](./images/iter1_mongodb_initialization.png)
 ![GraphQLApi](./images/iter1_graphql.png)
+
+### Iteration 2

@@ -51,11 +51,11 @@ export const Layout = (props) => {
           </Row>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col className="price-chart-panel" md={12}>
           <PricePanel />
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   )
 }
