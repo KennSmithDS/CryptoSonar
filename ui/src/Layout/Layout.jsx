@@ -5,7 +5,7 @@ import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
 import { ResourcesPanel } from '../Resources-Panel/ResourcesPanel'
 import { TrackedWalletsPanel } from '../Tracked-Wallets-Panel/TrackedWalletsPanel'
 import { NavBarPanel } from '../NavBar/NavBarPanel'
-import PricePanel from '../Chart/PricePanel'
+// import PricePanel from '../Chart/PricePanel'
 import './Layout.css';
 
 export const Layout = (props) => {

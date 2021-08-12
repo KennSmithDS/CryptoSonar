@@ -33,18 +33,6 @@ const WalletType = new GraphQLObjectType({
 const Query = new GraphQLObjectType({
     name: 'RootQuery',
     fields: {
-        userLogin: {
-            type: UserType,
-            args: {
-                userName: { type: new GraphQLNonNull(GraphQLString) },
-                userPassword: { type: new GraphQLNonNull(GraphQLString) }
-            },
-            resolve(parent, args) {
-                return User.findOne({
-                    userName: args.userName, 
-                    userPassword: args.userPassword})
-            }
-        },
         user: {
             type: UserType,
             args: { id: { type: GraphQLID } },
@@ -98,8 +86,9 @@ const Mutation = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 return User.findOne({
-                    userName: args.userName, 
-                    userPassword: args.userPassword})
+                    userName: args.userName,
+                    userPassword: args.userPassword
+                })
             }
         },
         addUser: {

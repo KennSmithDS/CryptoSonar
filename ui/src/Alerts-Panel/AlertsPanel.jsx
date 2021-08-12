@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState } from 'react'; // , useCallback, useEffect
 import { Container } from 'react-bootstrap';
 import AlertTable from './AlertTable';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";

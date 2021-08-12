@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/schema');
 const cors = require('cors');
-   
+
 // Major inspiration for Atlas MongoDB integration came from Bed Awad https://github.com/benawad/graphql-mongo-server/
 const startServer = async () => {
     try {
@@ -26,8 +26,12 @@ const startServer = async () => {
             schema, graphiql: true
         }));
 
+        app.get("/*", function (req, res) {
+            res.sendFile(path.resolve(__dirname, '../ui/build', 'index.html'));
+        })
+
         // Listen on server port for requests
-        app.listen({port}, () => {
+        app.listen({ port }, () => {
             console.log(`Server connected and listening on ${port}`);
         });
     } catch (err) {

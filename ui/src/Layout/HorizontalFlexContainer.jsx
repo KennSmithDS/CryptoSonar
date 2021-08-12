@@ -16,7 +16,7 @@ export function HorizontalFlexContainer({
                 flexDirection: "row",
                 flex: flex,
                 margin: 0,
-                padding: 0,
+                // padding: 0,
                 height: height,
                 width: width,
                 alignItems: align,
