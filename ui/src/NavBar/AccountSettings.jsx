@@ -1,36 +1,12 @@
 import React from 'react'
-import {Modal, Button, Container} from 'react-bootstrap'
-import { useMutation } from '@apollo/client'
-import { REMOVE_WALLET } from '../utils/queries/graphqlQueries'
+import {Modal, Button} from 'react-bootstrap'
+import { DeleteUserAccount } from './DeleteUserAccount';
+import { DeleteUserWallets } from './DeleteUserWallets';
 
 export function AccountSettings(props) {
   const handleClose = () => props.setShowModal(false);
   
-  const [delUserWallets, { loading, error }] = useMutation(REMOVE_WALLET);
-
-  function handleClearWallet(){
-    sendClearWalletData()
-    props.setRefetch(true)
-    handleClose();
-  }
-
-  function sendClearWalletData() {
-    const walletListIds = props.walletList.map(wallet => wallet.id)
-    for(let i=0; i < walletListIds.length; i++) {
-      delUserWallets({
-        variables: { 
-          id: walletListIds[i]
-        },
-      });
-      if (loading) return console.log('Submitting...');
-      if (error) return console.log(`Submission error! ${error.message}`);
-    }
-  }
-
-  function handleDeleteAccount(props) {
-
-  }
-  
+ 
   return (
     <>
       {props.showModal ?
@@ -39,24 +15,14 @@ export function AccountSettings(props) {
             <Modal.Title>Account Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>
-              <h5>Clear Tracking:</h5>
-              <Button 
-                variant="secondary" 
-                onClick={handleClearWallet}
-              >
-                Clear Wallet-Tracking
-              </Button>
-            </Container>
-            <Container>
-              <h5>Other:</h5>
-              <Button 
-                variant='danger' 
-                onClick={()=>handleDeleteAccount}
-              >
-                Delete Account
-              </Button>
-            </Container>
+            <DeleteUserWallets 
+              setRefetch={props.setRefetch}
+              handleClose={handleClose}
+              walletList={props.walletList}
+            />
+            <DeleteUserAccount 
+              user={props.user}
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

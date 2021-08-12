@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client'
 
 export function ListWallets(props) {
   const [walletList, setWalletList] = useState([])
-  props.setWalletList(walletList)
 
   const { data, refetch } = useQuery(GET_USER_WALLETS, {
     variables: {id: props.userID },
@@ -37,6 +36,7 @@ export function ListWallets(props) {
   useEffect( () =>{
     if(props.refetch){
       refetch();
+      props.setWalletList(walletList)
       props.setRefetch(false)
     }
   })
