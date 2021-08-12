@@ -70,7 +70,7 @@ export function AlertsPanel(props) {
       <div>
         <button onClick={bscScanHandler}>Click me once a wallet is selected!</button>
       </div>
-      <Container>
+      <Container className="alert-container">
         {!isLoading && alertList.length > 0 && <AlertTable alertList={alertList} />}
         {!isLoading && alertList.length === 0 && wallet.alias === undefined && <p>No data available</p>}
         {!isLoading && alertList.length === 0 && !wallet.alias === undefined && <p>No transaction data found for {wallet.address}</p>}

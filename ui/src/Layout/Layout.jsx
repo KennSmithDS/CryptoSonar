@@ -5,7 +5,7 @@ import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
 import { ResourcesPanel } from '../Resources-Panel/ResourcesPanel'
 import { TrackedWalletsPanel } from '../Tracked-Wallets-Panel/TrackedWalletsPanel'
 import { NavBarPanel } from '../NavBar/NavBarPanel'
-// import PricePanel from '../Chart/PricePanel'
+import PricePanel from '../Chart/PricePanel'
 import './Layout.css';
 
 export const Layout = (props) => {
@@ -51,11 +51,11 @@ export const Layout = (props) => {
           </Row>
         </Col>
       </Row>
-      {/* <Row>
+      <Row>
         <Col className="price-chart-panel" md={12}>
           <PricePanel />
         </Col>
-      </Row> */}
+      </Row>
     </Container>
   )
 }
