@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import AlertItem from './AlertItem';
+import './AlertItem.css';
 
 export function AlertTable(props) {
 
@@ -56,6 +57,7 @@ export function AlertTable(props) {
 
     const tableRows = alerts.map((alert) => (
         <AlertItem
+            className="alert-container"
             key={alert.id}
             id={alert.id}
             contractAddress={alert.contractAddress}

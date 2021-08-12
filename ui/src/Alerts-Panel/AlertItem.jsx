@@ -1,5 +1,3 @@
-import Link from 'react';
-
 export function AlertItem(props) {
 
     const currencyFormatter = new Intl.NumberFormat('en-US', {
