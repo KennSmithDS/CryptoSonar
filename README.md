@@ -32,13 +32,14 @@ Note: Browser preferance for GoogleChrome
 * Deploying Front-end to Heroku
   * Added `"serve": "^12.0.0"` dependancy necessary for deployment to Heroku
 ![HerokuDeployed](./images/iter1_heroku.PNG)
-![addWalletModal](./images/iter1_addWallet.PNG))
+![addWalletModal](./images/iter1_addWallet.PNG)
 
 ### iter 2
 * User features:
   * Users are initially directed to `./login`
     * Chosen username is shown in the login text box upon creating new account
   * Users are able to sign-in and sign-out
+    * Users are notified if entered user credentials are invalid
   * Users are able to delete individual wallets on the tracked wallets panel of their entire collection of tracked wallets in account settings
   * Users can delete account in account settings
     * Users are alerted to confirm to delete account 
@@ -54,7 +55,7 @@ Note: Browser preferance for GoogleChrome
   
 ![CreateAccount](./images/iter2_create_account.PNG)
 ![UserSignIn](./images/iter2_user_signin.PNG)
-![confirmDelete](./image/iter2_delete_user_account
+![confirmDelete](./image/iter2_delete_user_account)
 
 ## Contributes made by Kendall:
 * Back-end Development
