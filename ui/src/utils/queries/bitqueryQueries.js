@@ -1,6 +1,7 @@
 // default token address for USDT conversion
 
-const quoteToken = "0x55d398326f99059ff775485246999027b3197955"
+const baseToken = "0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3"
+const quoteToken = "0xe9e7cea3dedca5984780bafc599bd69add087d56"
 
 const getUsdValue = `
 {
