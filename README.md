@@ -5,7 +5,7 @@
 
 ## Webpage:
 * Front-end Application
-https://crypto-sonar-ui.herokuapp.com/
+https://crypto-sonar-ui.herokuapp.com/login
 
 * Back-end GraphQL IDE
 https://crypto-sonar-api.herokuapp.com/graphql
