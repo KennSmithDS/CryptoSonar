@@ -86,3 +86,26 @@ Note: Browser preferance for GoogleChrome
 ![GraphQLApi](./images/iter1_graphql.png)
 
 ### Iteration 2
+* Front-end development
+  * Refactored Bscscan API utility into AlertPanel when receives wallet from Layout props
+  * Designed Alert Panel nested component structure
+    * AlertPanel fetches transaction data based on selected wallelets
+    * AlertTable builds a React Table of AlertItems (rows)
+    * AlertItem individual row element displaying transaction properties and links
+  * Panel/Modal to contain embedded Iframe for PriceChart
+    * Shows price chart for a token from a selected transaction/alert row
+    * Embedded price chart comes from bogged.finance website (DApp)
+  * Implemented error handling for when invalid address is supplied by user
+    * Based on Response message status OK from external API service
+  * Debugged Heroku issue with users initially directed to `./login`
+    * Package.json homepage requires the full path: `https://crypto-sonar-ui.herokuapp.com/login`
+* Back-end Development
+  * Created userLogin root query definition 
+    * Support checking new user exists in login process
+* Deployed fixes and updates to Heroku
+  * Added `"react-iframe": "^1.8.0"` to support embedding of PriceChart Iframe
+	* Added	`"react-loader-spinner": "^4.0.0"` to add animated loading icon while fetching Bsc data
+
+![AlertPanel](./images/iter2_alert_panel.png)
+![InvalidWallet](./images/iter2_invalid_wallet.png)
+![PriceChart](./images/iter2_price_chart.png)

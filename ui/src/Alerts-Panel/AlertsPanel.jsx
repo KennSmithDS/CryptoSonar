@@ -1,7 +1,7 @@
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import React, { useEffect, useState, useRef } from 'react'; // , useCallback, useEffect
 import { Container } from 'react-bootstrap';
 import AlertTable from './AlertTable';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 // import { makeBitQueryCall } from '../utils/bitqueryApi';
 // import { makeBscScanCall } from '../utils/bscscanApi';
@@ -24,25 +24,19 @@ export function AlertsPanel(props) {
   const [alertList, setAlertList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [walletSelected, setWalletSelected] = useState(false);
-  // const [walletActive, setWalletActive] = useState('inherit');
-  // const walletRef = useRef();
-  // console.log(walletRef);
-
-  // const bscScanHandler = useCallback((address) => {
+  const [validWallet, setValidWallet] = useState(true);
 
   async function bscScanHandler() {
 
     const apiUrl = `${bscUrl}&address=${wallet.address}&startblock=${startBlock}&endblock=${endBlock}&sort=${sortOrder}&apikey=${apiKey}`;
 
+    setValidWallet(true)
     setIsLoading(true);
     const response = await fetch(apiUrl);
     const data = await response.json();
-    console.log(data);
 
-    let filteredKeyValues;
-
-    if (walletSelected) {
-      filteredKeyValues = data.result.map((tx, i) => {
+    if (walletSelected && data.status !== "0") {
+      const filteredKeyValues = data.result.map((tx, i) => {
         return {
           id: i,
           timeStamp: tx.timeStamp,
@@ -56,11 +50,16 @@ export function AlertsPanel(props) {
       })
       setAlertList(filteredKeyValues)
       setIsLoading(false);
+    } else if (walletSelected && data.status === "0") {
+      setValidWallet(false);
     }
+
   };
 
   useEffect(() => {
-    setWalletSelected(true);
+    if (props.selectedWallet.address !== undefined) {
+      setWalletSelected(true);
+    }
     bscScanHandler();
   }, [props]);
 
@@ -71,27 +70,16 @@ export function AlertsPanel(props) {
       </div>
       <Container className="alert-container">
         {walletSelected && !isLoading ? <AlertTable alertList={alertList} /> : <Loader
-          type="pacman"
+          type="Rings"
           color="#00BFFF"
           height={125}
           width={125}
           timeout={10000}
         />}
+        {!validWallet && <p>Invalid wallet address entered!</p>}
       </Container>
     </div>
   );
 }
 
 export default AlertsPanel;
-
-// {!walletSelected && <p>No data available</p>}
-// {!isLoading && walletSelected && <AlertTable alertList={alertList} />}
-// {!isLoading && alertList.length === 0 && wallet.alias === undefined && <p>No data available</p>}
-// {!isLoading && alertList.length === 0 && !wallet.alias === undefined && <p>No transaction data found for {wallet.address}</p>}
-// {isLoading && walletSelected && <Loader
-//   type="Puff"
-//   color="#00BFFF"
-//   height={200}
-//   width={200}
-//   timeout={10000}
-// />}
