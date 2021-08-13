@@ -53,7 +53,7 @@ export function AlertTable(props) {
     // ];
 
     const alerts = props.alertList;
-    console.log(alerts);
+    // console.log(alerts);
 
     const tableRows = alerts.map((alert) => (
         <AlertItem

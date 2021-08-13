@@ -19,23 +19,28 @@ const sortOrder = "desc";
 export function AlertsPanel(props) {
 
   const wallet = props.selectedWallet;
-  console.log(`Fetching transaction data for wallet address: ${wallet.address}`);
+  // console.log(`Wallet object: ${wallet}`);
+  // console.log(`Fetching transaction data for wallet address: ${wallet.address}`);
 
-  const [alertList, setAlertList] = useState([]);
+  const [alertList, setAlertList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [walletSelected, setWalletSelected] = useState(false);
+  // const [walletSelected, setWalletSelected] = useState(false);
   const [validWallet, setValidWallet] = useState(true);
 
   async function bscScanHandler() {
 
+    console.log('Trying to make a new request');
+
+    setValidWallet(true);
+    setIsLoading(true);
+
     const apiUrl = `${bscUrl}&address=${wallet.address}&startblock=${startBlock}&endblock=${endBlock}&sort=${sortOrder}&apikey=${apiKey}`;
 
-    setValidWallet(true)
-    setIsLoading(true);
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    if (walletSelected && data.status !== "0") {
+    // if (walletSelected && data.status !== "0") {
+    if (data.status !== "0") {
       const filteredKeyValues = data.result.map((tx, i) => {
         return {
           id: i,
@@ -50,26 +55,33 @@ export function AlertsPanel(props) {
       })
       setAlertList(filteredKeyValues)
       setIsLoading(false);
-    } else if (walletSelected && data.status === "0") {
+      // } else if (walletSelected && data.status === "0") {
+    } else if (data.status === "0") {
       setValidWallet(false);
     }
 
   };
 
   useEffect(() => {
-    if (props.selectedWallet.address !== undefined) {
-      setWalletSelected(true);
+    setAlertList(null);
+    if (props.selectedWallet.address) {
+      bscScanHandler();
+      const handleApiRefresh = setInterval(bscScanHandler, 60000);
+      console.log(handleApiRefresh);
+      return (() => {
+        console.log('Clearing refresh interval');
+        clearInterval(handleApiRefresh);
+      });
     }
-    bscScanHandler();
-  }, [props]);
+  }, [props.selectedWallet.address]);
 
   return (
     <div>
       <div>
-        {walletSelected ? <h2>Trading Alerts for {wallet.alias}</h2> : <h2>Select a wallet to see alerts</h2>}
+        {props.selectedWallet.address ? <h2>Trading Alerts for {wallet.alias}</h2> : <h2>Select a wallet to see alerts</h2>}
       </div>
       <Container className="alert-container">
-        {walletSelected && !isLoading ? <AlertTable alertList={alertList} /> : <Loader
+        {alertList ? <AlertTable alertList={alertList} /> : <Loader
           type="Rings"
           color="#00BFFF"
           height={125}

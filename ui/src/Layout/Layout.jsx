@@ -9,7 +9,7 @@ import PricePanel from '../Chart/PricePanel'
 import './Layout.css';
 
 export const Layout = (props) => {
-  const [selectedWallet, setSelectedWallet] = useState('')
+  const [selectedWallet, setSelectedWallet] = useState({})
   const [walletList, setWalletList] = useState([])
   const [refetch, setRefetch] = useState(false)
 
