@@ -8,7 +8,7 @@ export function AlertItem(props) {
     const dateFormat = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 
     const alertRow = (
-        <tr>
+        <tr onClick={() => props.setSelectedAlert(props.contractAddress)} style={{ cursor: "pointer" }}>
             <td>{props.id}</td>
             <td><a target="_blank" rel="noreferrer" href={`https://bscscan.com/address/${props.contractAddress}`}>{props.tokenName}</a></td>
             <td>{props.tokenSymbol}</td>

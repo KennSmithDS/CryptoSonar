@@ -1,14 +1,12 @@
 import React from 'react';
 import './ResourcePanel.css';
+import PricePanel from '../Chart/PricePanel';
 
 export function ResourcesPanel(props) {
-  const wallet = props.selectedWallet
+  // const wallet = props.selectedWallet
+
   return (
-    <div>
-      Resource Panel Here
-      <h2>Resource Panel for {wallet.alias}</h2>
-      <h2>({wallet.address})</h2>
-    </div>
+    <PricePanel contractAddress={props.selectedAlert} />
   )
 }
 

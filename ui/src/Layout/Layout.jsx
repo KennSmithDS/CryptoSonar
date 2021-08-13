@@ -12,6 +12,7 @@ export const Layout = (props) => {
   const [selectedWallet, setSelectedWallet] = useState({})
   const [walletList, setWalletList] = useState([])
   const [refetch, setRefetch] = useState(false)
+  const [selectedAlert, setSelectedAlert] = useState(null)
 
   return (
     <Container>
@@ -41,19 +42,21 @@ export const Layout = (props) => {
         <Col md={9}>
           <Row>
             <Col className="alerts-panel" md={12}>
-              <AlertsPanel selectedWallet={selectedWallet} />
+              <AlertsPanel selectedWallet={selectedWallet}
+                setSelectedAlert={(val) => setSelectedAlert(val)}
+              />
             </Col>
           </Row>
           <Row>
             <Col className="resources-panel" md={12}>
-              <ResourcesPanel selectedWallet={selectedWallet} />
+              <ResourcesPanel selectedWallet={selectedWallet} selectedAlert={selectedAlert} />
             </Col>
           </Row>
         </Col>
       </Row>
       {/* <Row>
         <Col className="price-chart-panel" md={12}>
-          <PricePanel />
+          <PricePanel contractAddress={selectedAlert} />
         </Col>
       </Row> */}
     </Container>
