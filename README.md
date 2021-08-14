@@ -55,7 +55,7 @@ Note: Browser preferance for GoogleChrome
   
 ![CreateAccount](./images/iter2_create_account.PNG)
 ![UserSignIn](./images/iter2_user_signin.PNG)
-![confirmDelete](./image/iter2_delete_user_account.PNG)
+![confirmDelete](./images/iter2_delete_user_account.PNG)
 
 ## Contributions made by Kendall:
 ### Iteration 1

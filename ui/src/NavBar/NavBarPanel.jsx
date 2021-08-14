@@ -6,7 +6,6 @@ import {Broadcast} from 'react-bootstrap-icons';
 
 import { AccountSettings } from './AccountSettings'
 
-
 export function NavBarPanel(props) {
   const [showModal, setShowModal] = useState(false)
   const openModal = () => {
@@ -15,15 +14,23 @@ export function NavBarPanel(props) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
-        <Broadcast size={50}/>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto Brand">
-            <Navbar.Brand >CryptoSONAR</Navbar.Brand>
+            <Navbar.Brand href="/">
+            <Broadcast size={50}/> CryptoSONAR
+            </Navbar.Brand>
           </Nav>
           <Nav>
-            <NavDropdown title={props.user.userName} id="collasible-nav-dropdown">
-              <NavDropdown.Item onClick={openModal}>Account Settings</NavDropdown.Item>
+            <NavDropdown 
+              title={props.user.userName} 
+              id="collasible-nav-dropdown"
+            >
+              <NavDropdown.Item  
+                onClick={openModal}
+              >
+                Account Settings
+              </NavDropdown.Item>
               <AccountSettings
                 user={props.user}
                 walletList={props.walletList}
