@@ -26,7 +26,7 @@ export function AlertTable(props) {
     ))
 
     return (
-        <Table bordered hover responsive>
+        <Table bordered hover responsive striped variant="dark">
             <thead>
                 <tr>
                     <th>ID</th>

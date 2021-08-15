@@ -12,8 +12,8 @@ export function NavBarPanel(props) {
     setShowModal(prev => !prev)
   }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container>
+    <Navbar collapseOnSelect expand="lg" variant="dark">
+      <Container fluid>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto Brand">

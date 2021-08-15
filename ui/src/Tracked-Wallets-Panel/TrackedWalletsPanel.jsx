@@ -38,6 +38,7 @@ const BUTTON_SIZE=45
         <Button variant="outline-secondary" onClick={openModal}>
           <PlusCircle size={BUTTON_SIZE} />
         </Button>
+        {'   '}
           <AddWalletItem 
             submitted={handleSubmitted} 
             userID={userID} 

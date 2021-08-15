@@ -15,9 +15,9 @@ export const Layout = (props) => {
   const [selectedAlert, setSelectedAlert] = useState(null)
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col className="NavBar" md={12}>
+        <Col className="NavBar" md={{offset:1, span:10}}>
           <NavBarPanel
             user={props.user}
             walletList={walletList}
@@ -28,7 +28,7 @@ export const Layout = (props) => {
       <Row>
         <Col md={3}>
           <Row>
-            <Col className="tracked-wallet" md={12}>
+            <Col className="tracked-wallet" md={{offset:4}}>
               <TrackedWalletsPanel
                 refetch={refetch}
                 setWalletList={setWalletList}
@@ -39,9 +39,9 @@ export const Layout = (props) => {
             </Col>
           </Row>
         </Col>
-        <Col md={9}>
+        <Col md={8}>
           <Row>
-            <Col className="alerts-panel" md={12}>
+            <Col className="alerts-panel" md={{span:12}}>
               <AlertsPanel selectedWallet={selectedWallet}
                 setSelectedAlert={(val) => setSelectedAlert(val)}
               />

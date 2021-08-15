@@ -18,7 +18,9 @@ export function ListWallets(props) {
   }
 
   const renderTooltip = (wallet) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip 
+      key={`toottip ${props.userID} ${wallet.address}`}
+    >
       {wallet.address}
     </Tooltip>
   );
@@ -31,12 +33,14 @@ export function ListWallets(props) {
           placement="top"
           delay={{ show: 250}}
           overlay={renderTooltip(wallet)}
+          key={`trigger ${props.userID} ${i}`}
+
         >            
           <ListGroup.Item 
             action 
             onClick={()=>handleClick(wallet)} 
-            variant="light" 
-            key={i}
+            variant="dark" 
+            key={`${props.userID} ${i}`}
           >
             {wallet.alias}
           </ListGroup.Item>
@@ -55,9 +59,10 @@ export function ListWallets(props) {
 
   return(
     <div>            
-      <ListGroup 
+      <ListGroup
+        variant="dark"
         defaultActiveKey={"wallet-list-active-key"} 
-        key={"wallet-list-key"}
+        key={`wallet-list-key ${props.userID}`}
       >
         <ItemizedWallets />  
       </ListGroup>

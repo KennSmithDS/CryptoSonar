@@ -20,6 +20,7 @@ export function AccountSettings(props) {
               handleClose={handleClose}
               walletList={props.walletList}
             />
+            <p/>
             <DeleteUserAccount 
               user={props.user}
             />
