@@ -76,8 +76,11 @@ export const Login = (props) => {
           <Alert.Heading><h5>Incorrect username or password!</h5></Alert.Heading>
           <p> Please reenter or create an account to proceed.
           <br/> <strong>Admin Use Only:</strong>
-          <br/> Username: SpongeBob 
-          <br/> Password: bob
+          <br/> u:SpongeBob pw:bob
+          <br/> u:JimmyGnome pw:jimmy
+          <br/> u:ZoeFish pw:zoe
+          <br/> u:MargeInCharge pw:marge
+          <br/> u:EarlybirdEarl pw:earl
           </p>
         </Alert>      
     : null
@@ -111,13 +114,16 @@ export const Login = (props) => {
                 value={formState.password || ''} 
               />
             </Form.Group>
-            <Row>
+            <Row >
+            <Container fluid>
+
               <Button 
-                variant="primary" 
+                variant="light" 
                 type="submit"
               >
                 Sign-in
               </Button>
+              
               <Button 
                 variant="link" 
                 onClick={openModal} 
@@ -129,8 +135,11 @@ export const Login = (props) => {
                   setShowModal={setShowModal} 
                   setUserFormState={formState} 
                 />
+            </Container>
             </Row>
+
           </Form>
+          <p />
           <NoUserFoundAlert />
         </Col>
       </Row>

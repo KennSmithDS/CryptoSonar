@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import {Modal, Button, Container, Form} from 'react-bootstrap'
 import { useMutation } from '@apollo/client';
 import { ADD_WALLET } from '../utils/queries/graphqlQueries'
+import { PlusCircle } from 'react-bootstrap-icons'
+
 
 export const  AddWalletItem = (props) => {
-  const { showModal, setShowModal } = props
+  // const { showModal, setShowModal } = props
+  const [showModal, setShowModal] = useState(false)
+
   const handleClose = () => setShowModal(false);
   const [inputs, setInputs] = useState({}, []);
+
+
+
+  const openModal = () => {
+    setShowModal(prev => !prev)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -82,6 +92,9 @@ export const  AddWalletItem = (props) => {
           </Modal.Footer>
         </Modal>
       : null}
+      <Button variant="outline-secondary" onClick={openModal}>
+        <PlusCircle size={props.size} />
+      </Button>
     </>
   )
 }

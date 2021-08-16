@@ -26,23 +26,33 @@ function App() {
     } else {
       setUserLoggedIn(false)
     }
-  }, [setUser, userLoggedIn]);
+  }, [setUser, setUserLoggedIn, userLoggedIn]);
+
 
   return (
-    <Router >
-      <ApolloProvider client={client}>
-        <Switch>
+    localStorage.getItem('UserCredentials')
+    ? <Router >
+        <ApolloProvider client={client}>
+          <Switch>
+            <Route path="/login" component={Login}>
+              <Login userLoggedIn={setUserLoggedIn} />
+            </Route>
+            <Route exact path="/" component={Layout}>
+              <Layout user={user} />
+            </Route>
+            <Route exact path="/404" component={PageNotFound} />
+            <Redirect to="/404" />
+          </Switch>
+          </ApolloProvider>
+      </Router> 
+    : <Router >
+      <Redirect to="/login" />
+        <ApolloProvider client={client}>
           <Route path="/login" component={Login}>
             <Login userLoggedIn={setUserLoggedIn} />
           </Route>
-          <Route exact path="/" component={Layout}>
-            <Layout user={user} />
-          </Route>
-          <Route exact path="/404" component={PageNotFound} />
-          <Redirect to="/404" />
-        </Switch>
-      </ApolloProvider>
-    </Router>
+        </ApolloProvider>
+    </Router>    
   );
 }
 

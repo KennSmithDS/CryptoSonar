@@ -55,7 +55,19 @@ Note: Browser preferance for GoogleChrome
   
 ![CreateAccount](./images/iter2_create_account.PNG)
 ![UserSignIn](./images/iter2_user_signin.PNG)
-![confirmDelete](./image/iter2_delete_user_account)
+![confirmDelete](./images/iter2_delete_user_account.PNG)
+
+### Iteration 3
+* User Features:
+  * Users are able to edit a selected wallet item
+* Software Development:
+  * Implemented update wallet on the backend schema and on the frontend gql call
+* Bells and whistles
+  * Wallet Address is shown when hovering over a wallet item.
+  * More admin login examples are provided on incorrect userCreds alert.c
+  * Logo is a clickable link landing to main dashboard page.
+  * Applied CSS themes to match dex.guru
+
 
 ## Contributions made by Kendall:
 ### Iteration 1

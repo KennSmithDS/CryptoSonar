@@ -1,35 +1,56 @@
+#root {
+	--main-bg-color: #191d22;
+	--main-fg-color: #29313a;
+	--main-text-color: rgb(188, 209, 212);
+	--main-border-color: #3b9e84;
+	background: var(--main-bg-color);
+}
+
 .NavBar {
-	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	/* text-align: center; */
 	min-height: 75px;
-	border: 2px solid black;
-	background: white;
+	border: 2px solid var(--main-border-color);
+	background: var(--main-bg-color);
+	border-radius: 10px;
+}
+
+h3, h2, h1, label {
+	color: var(--main-text-color);
 }
 
 .tracked-wallet {
 	text-align: center;
-	min-height: 800px;
-	border: 2px solid black;
-	background: white;
+	border: 2px solid var(--main-border-color);
+	background: var(--main-bg-color);
+	border-radius: 10px;
+	margin-right:5px;
+}
+
+.wallets-list-container{
+	background: var(--main-fg-color);
+}
+
+.list-group-item{
+	background: #57687ca1;
+	color: var(--main-text-color)
 }
 
 .alerts-panel {
+	margin-bottom: 5px;
 	text-align: center;
 	min-height: 400px;
-	border: 2px solid black;
-	background: white;
+	border: 2px solid var(--main-border-color);
+	border-radius: 10px;
+	background: var(--main-bg-color);
 }
 
 .resources-panel {
+	margin-bottom:5px;
 	text-align: center;
 	min-height: 400px;
-	border: 2px solid black;
-	background: white;
-	padding: 0;
-}
-
-.price-chart-panel {
-	text-align: center;
-	min-height: 400px;
-	border: 2px solid black;
-	background: white;
+	border: 2px solid var(--main-border-color);
+	border-radius: 10px;
+	background: var(--main-bg-color);
 }

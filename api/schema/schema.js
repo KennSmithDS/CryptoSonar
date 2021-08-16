@@ -121,6 +121,20 @@ const Mutation = new GraphQLObjectType({
                 return wallet.save();
             }
         },
+        updateWallet: {
+            type: WalletType,
+            args: {
+                id: { type: GraphQLID },
+                alias: { type: new GraphQLNonNull(GraphQLString) },
+                address: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parent, args) {
+                return Wallet.findByIdAndUpdate( args.id, {
+                    alias: args.alias,
+                    address: args.address
+                });
+            } 
+        },
         removeWallet: {
             type: WalletType,
             args: {
