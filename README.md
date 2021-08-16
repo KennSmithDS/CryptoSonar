@@ -94,7 +94,7 @@ Note: Browser preferance for GoogleChrome
     * AlertItem individual row element displaying transaction properties and links
   * Panel/Modal to contain embedded Iframe for PriceChart
     * Shows price chart for a token from a selected transaction/alert row
-    * Embedded price chart comes from bogged.finance website (DApp)
+    * Embedded price chart comes from dex.guru website (DApp)
   * Implemented error handling for when invalid address is supplied by user
     * Based on Response message status OK from external API service
   * Debugged Heroku issue with users initially directed to `./login`
