@@ -52,6 +52,15 @@ const ADD_WALLET = gql`
   }
 `;
 
+const UPDATE_WALLET = gql`
+  mutation($id: ID!, $alias: String!, $address: String!){
+    updateWallet(id: $id, alias: $alias, address: $address){
+      alias
+      address
+    } 
+  }
+`;
+
 const REMOVE_WALLET = gql`
     mutation ($id: ID!) {
         removeWallet(id: $id) {
@@ -80,4 +89,14 @@ const REMOVE_USER = gql`
     }
 `;
 
-export { USER_LOGIN, getUsers, getWallets, GET_USER_WALLETS, ADD_WALLET, REMOVE_WALLET, ADD_USER, REMOVE_USER };
+export { 
+  USER_LOGIN, 
+  UPDATE_WALLET, 
+  getUsers, 
+  getWallets, 
+  GET_USER_WALLETS, 
+  ADD_WALLET, 
+  REMOVE_WALLET, 
+  ADD_USER, 
+  REMOVE_USER 
+};

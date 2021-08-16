@@ -5,20 +5,17 @@ import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
 import { DeleteWalletButton } from './DeleteWalletButton'
 import { ListWallets } from './ListWallets'
+import UpdateWalletItem from './UpdateWalletItem'
 
 export function TrackedWalletsPanel(props) {
   const wallet = props.selectedWallet
   const userID = props.userID
 
-  const [showModal, setShowModal] = useState(false)
+  // const [showModal, setShowModal] = useState(false)
   const [refetch, setRefetch] = useState(false);
 
   function handleSubmitted(val){
     setRefetch(val)
-  }
-
-  const openModal = () => {
-    setShowModal(prev => !prev)
   }
 
 const BUTTON_SIZE=45
@@ -35,20 +32,22 @@ const BUTTON_SIZE=45
         />
       </Container>
       <Container className="add-delete-wallet">
-        <Button variant="outline-secondary" onClick={openModal}>
-          <PlusCircle size={BUTTON_SIZE} />
-        </Button>
+        <AddWalletItem 
+          submitted={handleSubmitted} 
+          userID={userID} 
+          size={BUTTON_SIZE}
+        />
         {'   '}
-          <AddWalletItem 
-            submitted={handleSubmitted} 
-            userID={userID} 
-            showModal={showModal} 
-            setShowModal={setShowModal} 
-          />
         <DeleteWalletButton 
           selectedWallet={wallet} 
           submitted={handleSubmitted} 
           size={BUTTON_SIZE} 
+        />
+        {'   '}
+        <UpdateWalletItem
+          selectedWallet={wallet} 
+          submitted={handleSubmitted} 
+          size={BUTTON_SIZE}
         />
       </Container>      
     </div>

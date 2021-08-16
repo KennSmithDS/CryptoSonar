@@ -3,8 +3,6 @@ import {Modal, Button, Form, Alert, Row, Container} from 'react-bootstrap'
 import { ADD_USER } from '../utils/queries/graphqlQueries'
 import { useMutation } from '@apollo/client'
 
-
-
 import './Login.css'
 
 export function CreateAccount(props) {
@@ -14,8 +12,6 @@ export function CreateAccount(props) {
   const handleClose = () => setShowModal(false);
 
   function checkPassword() {
-    console.log(formState.password)
-    console.log(formState.confirmPassword)
     return formState.password === formState.confirmPassword
   }
 
@@ -58,8 +54,14 @@ export function CreateAccount(props) {
   const PwMatchError = () => {  
     return(
       showPwAlert ?        
-        <Alert variant="danger" onClose={() => setShowPwAlert(false)} dismissible>
-          <Alert.Heading><h5>Passwords do not match.</h5></Alert.Heading>
+        <Alert 
+          variant="danger" 
+          onClose={() => setShowPwAlert(false)} 
+          dismissible
+        >
+          <Alert.Heading>
+            <h5>Passwords do not match.</h5>
+          </Alert.Heading>
         </Alert>      
     : null
     )
@@ -76,17 +78,32 @@ export function CreateAccount(props) {
           <Form className="create-account-form" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username:</Form.Label>
-              <Form.Control type="text" placeholder="Enter Username" onChange={handleChange} value={formState.username || ''} />
+              <Form.Control 
+                type="text" 
+                placeholder="Enter Username" 
+                onChange={handleChange} 
+                value={formState.username || ''} 
+              />
               <Form.Text className="text-muted">
               </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password:</Form.Label>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange} value={formState.password || ''} />
+              <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                onChange={handleChange} 
+                value={formState.password || ''} 
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="confirmPassword">
               <Form.Label>Confirm Password:</Form.Label>
-              <Form.Control type="password" placeholder="confirmPassword" onChange={handleChange} value={formState.confirmPassword || ''} />
+              <Form.Control 
+                type="password" 
+                placeholder="confirmPassword" 
+                onChange={handleChange} 
+                value={formState.confirmPassword || ''} 
+              />
             </Form.Group>
           </Form>
           <Container>
@@ -106,21 +123,6 @@ export function CreateAccount(props) {
             </Row>
             </Container>
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Row>
-              <Button 
-                variant="primary" 
-                type="submit" 
-                href="#"
-                onClick={()=>{handleSubmit()}}
-              >
-                Create Account
-              </Button>
-            </Row>
-            <Row>
-              <PwMatchError />
-            </Row>
-          </Modal.Footer> */}
         </Modal>
       : null}
     </>
