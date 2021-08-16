@@ -1,7 +1,8 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import React, { useEffect, useState, useRef } from 'react'; // , useCallback, useEffect
+import React, { useEffect, useState } from 'react'; // , useCallback, useEffect
 import { Container } from 'react-bootstrap';
 import AlertTable from './AlertTable';
+import AlertNotification from "./AlertNotification";
 import Loader from "react-loader-spinner";
 // import { makeBitQueryCall } from '../utils/bitqueryApi';
 // import { makeBscScanCall } from '../utils/bscscanApi';
@@ -19,18 +20,14 @@ const sortOrder = "desc";
 export function AlertsPanel(props) {
 
   const wallet = props.selectedWallet;
-  // console.log(`Wallet object: ${wallet}`);
-  // console.log(`Fetching transaction data for wallet address: ${wallet.address}`);
 
   const [alertList, setAlertList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const [walletSelected, setWalletSelected] = useState(false);
   const [validWallet, setValidWallet] = useState(true);
 
   async function bscScanHandler() {
 
-    console.log('Trying to make a new request');
-
+    console.log(`Trying to make a new request for ${wallet.address}`);
     setValidWallet(true);
     setIsLoading(true);
 
@@ -39,7 +36,6 @@ export function AlertsPanel(props) {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    // if (walletSelected && data.status !== "0") {
     if (data.status !== "0") {
       const filteredKeyValues = data.result.map((tx, i) => {
         return {
@@ -55,7 +51,6 @@ export function AlertsPanel(props) {
       })
       setAlertList(filteredKeyValues)
       setIsLoading(false);
-      // } else if (walletSelected && data.status === "0") {
     } else if (data.status === "0") {
       setValidWallet(false);
     }
@@ -88,7 +83,7 @@ export function AlertsPanel(props) {
           width={125}
           timeout={10000}
         />}
-        {!validWallet && <p>Invalid wallet address entered!</p>}
+        {!validWallet && <AlertNotification message={`Entry for ${wallet.alias} has invalid address`} />}
       </Container>
     </div>
   );
