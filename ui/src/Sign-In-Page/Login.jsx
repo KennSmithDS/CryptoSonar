@@ -60,6 +60,7 @@ export const Login = (props) => {
   const storeUser = (user) =>  {  
     localStorage.setItem('UserCredentials', JSON.stringify(user));
     props.userLoggedIn(true)
+    props.setReload(true)
   }
 
 
