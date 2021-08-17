@@ -14,6 +14,26 @@
 
 .add-wallet {
 	color: #34daad;
+	fill: #34daad;
+	outline: #34daad;
+	border-color: #34daad;
+	box-shadow: #34daad;
+}
+
+.delete-wallet {
+	color: #34daad;
+	fill: #34daad;
+	outline: #34daad;
+	border-color: #34daad;
+	box-shadow: #34daad;
+}
+
+.update-wallet {
+	color: #34daad;
+	fill: #34daad;
+	outline: #34daad;
+	border-color: #34daad;
+	box-shadow: #34daad;
 }
 
 .tracked-header {

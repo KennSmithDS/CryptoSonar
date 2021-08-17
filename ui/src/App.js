@@ -21,6 +21,7 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('UserCredentials')) {
       const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
+      console.log(userCreds);
       setUser(userCreds)
       setUserLoggedIn(true)
     } else {
@@ -31,29 +32,30 @@ function App() {
 
   return (
     <div className="App">
-      localStorage.getItem('UserCredentials')
-      ? <Router >
-        <ApolloProvider client={client}>
-          <Switch>
+      {localStorage.getItem('UserCredentials')
+        ? <Router >
+          <ApolloProvider client={client}>
+            <Switch>
+              <Route path="/login" component={Login}>
+                <Login userLoggedIn={setUserLoggedIn} />
+              </Route>
+              <Route exact path="/" component={Layout}>
+                <Layout user={user} />
+              </Route>
+              <Route exact path="/404" component={PageNotFound} />
+              <Redirect to="/404" />
+            </Switch>
+          </ApolloProvider>
+        </Router>
+        : <Router >
+          <Redirect to="/login" />
+          <ApolloProvider client={client}>
             <Route path="/login" component={Login}>
               <Login userLoggedIn={setUserLoggedIn} />
             </Route>
-            <Route exact path="/" component={Layout}>
-              <Layout user={user} />
-            </Route>
-            <Route exact path="/404" component={PageNotFound} />
-            <Redirect to="/404" />
-          </Switch>
-        </ApolloProvider>
-      </Router>
-      : <Router >
-        <Redirect to="/login" />
-        <ApolloProvider client={client}>
-          <Route path="/login" component={Login}>
-            <Login userLoggedIn={setUserLoggedIn} />
-          </Route>
-        </ApolloProvider>
-      </Router>
+          </ApolloProvider>
+        </Router>
+      }
     </div>
   );
 }

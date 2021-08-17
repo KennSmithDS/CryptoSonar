@@ -13,11 +13,13 @@ export const UpdateWalletItem = (props) => {
   const handleClose = () => setShowModal(false);
 
   const openModal = () => {
-    setShowModal(prev => !prev)
-    setFormState({
-      alias: props.selectedWallet.alias,
-      address: props.selectedWallet.address,
-    })
+    if (props.selectedWallet.address) {
+      setShowModal(prev => !prev)
+      setFormState({
+        alias: props.selectedWallet.alias,
+        address: props.selectedWallet.address,
+      })
+    }
   }
 
   const handleSubmit = (event) => {
@@ -92,7 +94,10 @@ export const UpdateWalletItem = (props) => {
           </Modal.Footer>
         </Modal>
         : null}
-      <Button variant="outline-warning" onClick={openModal}>
+      <Button
+        variant="outline-secondary"
+        onClick={openModal}
+      >
         <PencilSquare size={props.size} className="update-wallet" />
       </Button>
     </>

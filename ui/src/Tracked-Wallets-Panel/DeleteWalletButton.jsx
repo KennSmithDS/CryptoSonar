@@ -10,8 +10,10 @@ export const DeleteWalletButton = (props) => {
   const [delWalFunc, { loading, error }] = useMutation(REMOVE_WALLET);
 
   const handleClick = (val) => {
-    SendData(val);
-    props.submitted(true)
+    if (id) {
+      SendData(val);
+      props.submitted(true)
+    }
   }
 
   const SendData = (val) => {
@@ -27,7 +29,7 @@ export const DeleteWalletButton = (props) => {
   return (
     <>
       <Button
-        variant="outline-danger"
+        variant="outline-secondary"
         onClick={() => handleClick(id)}
       >
         <DashCircle size={props.size} className="delete-wallet" />
