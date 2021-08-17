@@ -14,6 +14,8 @@ export function AlertTable(props) {
             key={alert.id}
             id={alert.id}
             contractAddress={alert.contractAddress}
+            walletAddress={alert.walletAddress}
+            toAddress={alert.toAddress}
             tokenName={alert.tokenName}
             tokenSymbol={alert.tokenSymbol}
             tokenDecimal={alert.tokenDecimal}
@@ -33,7 +35,8 @@ export function AlertTable(props) {
                     <th>Token Name</th>
                     <th>Token Symbol</th>
                     <th>Quantity</th>
-                    <th>USDT Value</th>
+                    <th>Order</th>
+                    {/* <th>USDT Value</th> */}
                     <th>Transaction</th>
                     <th>Timestamp</th>
                 </tr>

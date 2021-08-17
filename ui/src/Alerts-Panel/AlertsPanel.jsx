@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import AlertTable from './AlertTable';
 import AlertNotification from "./AlertNotification";
 import Loader from "react-loader-spinner";
+import './AlertsPanel.css';
 // import { makeBitQueryCall } from '../utils/bitqueryApi';
 // import { makeBscScanCall } from '../utils/bscscanApi';
 
@@ -43,6 +44,8 @@ export function AlertsPanel(props) {
           timeStamp: tx.timeStamp,
           hash: tx.hash,
           contractAddress: tx.contractAddress,
+          walletAddress: wallet.address,
+          toAddress: tx.to,
           value: tx.value,
           tokenName: tx.tokenName,
           tokenSymbol: tx.tokenSymbol,
@@ -73,7 +76,7 @@ export function AlertsPanel(props) {
   return (
     <div>
       <div>
-        {props.selectedWallet.address ? <h2>Trading Alerts for {wallet.alias}</h2> : <h2>Select a wallet to see alerts</h2>}
+        {props.selectedWallet.address ? <h2 className="alerts-header">Trading Alerts for {wallet.alias}'s BSC Wallet</h2> : <h2>Select a wallet to see alerts</h2>}
       </div>
       <Container className="alert-container">
         {alertList ? <AlertTable alertList={alertList} setSelectedAlert={props.setSelectedAlert} /> : <Loader

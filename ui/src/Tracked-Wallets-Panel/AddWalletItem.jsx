@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import {Modal, Button, Container, Form} from 'react-bootstrap'
+import { Modal, Button, Container, Form } from 'react-bootstrap'
 import { useMutation } from '@apollo/client';
 import { ADD_WALLET } from '../utils/queries/graphqlQueries'
 import { PlusCircle } from 'react-bootstrap-icons'
 
 
-export const  AddWalletItem = (props) => {
+export const AddWalletItem = (props) => {
   // const { showModal, setShowModal } = props
   const [showModal, setShowModal] = useState(false)
 
@@ -25,17 +25,17 @@ export const  AddWalletItem = (props) => {
     handleClose();
   }
   const handleInputChange = ({ target }) => {
-    const {name, value} = target
+    const { name, value } = target
     setInputs((prev) => ({
       ...prev,
       [name]: value
     }));
   };
   const [addWalFunc, { loading, error }] = useMutation(ADD_WALLET);
-    
+
   const SendData = (inputs) => {
     addWalFunc({
-      variables:{
+      variables: {
         alias: inputs.walletAlias,
         address: inputs.walletAddress,
         userId: props.userID,
@@ -53,16 +53,16 @@ export const  AddWalletItem = (props) => {
             <Modal.Title>Add Wallet</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>          
+            <Container>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formWalletAddress">
                   <Form.Label>Wallet Address:</Form.Label>
-                  <Form.Control 
-                    required 
-                    type="string" 
-                    placeholder="Wallet Address" 
-                    name="walletAddress" 
-                    onChange={handleInputChange} 
+                  <Form.Control
+                    required
+                    type="string"
+                    placeholder="Wallet Address"
+                    name="walletAddress"
+                    onChange={handleInputChange}
                     value={inputs.walletAddress || ''}
                   />
                 </Form.Group>
@@ -70,12 +70,12 @@ export const  AddWalletItem = (props) => {
                   <Form.Label>
                     Address Alias:
                   </Form.Label>
-                  <Form.Control 
-                    required 
-                    type="string" 
-                    placeholder="Address Alias" 
-                    name="walletAlias" 
-                    onChange={handleInputChange} 
+                  <Form.Control
+                    required
+                    type="string"
+                    placeholder="Address Alias"
+                    name="walletAlias"
+                    onChange={handleInputChange}
                     value={inputs.walletAlias || ''}
                   />
                 </Form.Group>
@@ -91,9 +91,9 @@ export const  AddWalletItem = (props) => {
             </Button>
           </Modal.Footer>
         </Modal>
-      : null}
+        : null}
       <Button variant="outline-secondary" onClick={openModal}>
-        <PlusCircle size={props.size} />
+        <PlusCircle size={props.size} className="add-wallet" />
       </Button>
     </>
   )

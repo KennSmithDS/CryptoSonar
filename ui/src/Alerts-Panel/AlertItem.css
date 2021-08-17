@@ -2,3 +2,36 @@
     overflow-y: scroll;
     height: 340px;
 }
+
+.token-button {
+    background-color: #350c5c;
+    color: #34daad;
+    border-color: #3b9e84;
+    width: 80%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.token-button:hover {
+    background-color: #34daad;
+    color: #350c5c;
+}
+
+.order-buy {
+    background-color: #34daad;
+    color: #350c5c;
+    border-color: #350c5c;
+    border-radius: 10px;
+    height: 80%;
+    width: 80%;
+}
+
+.order-sell {
+    background-color: #350c5c;
+    color:  #34daad;
+    border-color: #34daad;
+    border-radius: 10px;
+    height: 80%;
+    width: 80%;
+}

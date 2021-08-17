@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import {Modal, Button, Container, Form} from 'react-bootstrap'
+import { Modal, Button, Container, Form } from 'react-bootstrap'
 import { useMutation } from '@apollo/client';
 import { UPDATE_WALLET } from '../utils/queries/graphqlQueries'
 import { PencilSquare } from 'react-bootstrap-icons'
 
 
-export const  UpdateWalletItem = (props) => {
+export const UpdateWalletItem = (props) => {
   const [formState, setFormState] = useState({})
-  
+
   const [showModal, setShowModal] = useState(false)
 
   const handleClose = () => setShowModal(false);
@@ -16,7 +16,7 @@ export const  UpdateWalletItem = (props) => {
     setShowModal(prev => !prev)
     setFormState({
       alias: props.selectedWallet.alias,
-      address: props.selectedWallet.address,    
+      address: props.selectedWallet.address,
     })
   }
 
@@ -28,17 +28,18 @@ export const  UpdateWalletItem = (props) => {
   }
 
   const handleChange = (e) => {
-    setFormState({...formState,
+    setFormState({
+      ...formState,
       [e.target.id]: e.target.value
     })
   }
 
   const [updateWalFunc, { loading, error }] = useMutation(UPDATE_WALLET);
-    
+
   const SendData = (formState) => {
     console.log(formState)
     updateWalFunc({
-      variables:{
+      variables: {
         id: props.selectedWallet.id,
         alias: formState.alias,
         address: formState.address
@@ -56,25 +57,25 @@ export const  UpdateWalletItem = (props) => {
             <Modal.Title>Update Wallet</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>          
+            <Container>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="address">
                   <Form.Label>Update Address:</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    name="walletAddress" 
-                    onChange={handleChange} 
-                    defaultValue={formState.address} 
+                  <Form.Control
+                    type="text"
+                    name="walletAddress"
+                    onChange={handleChange}
+                    defaultValue={formState.address}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="alias">
                   <Form.Label>
                     Update Alias:
                   </Form.Label>
-                  <Form.Control 
-                    type="text" 
+                  <Form.Control
+                    type="text"
                     name="walletAlias"
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     defaultValue={formState.alias}
                   />
                 </Form.Group>
@@ -90,9 +91,9 @@ export const  UpdateWalletItem = (props) => {
             </Button>
           </Modal.Footer>
         </Modal>
-      : null}
+        : null}
       <Button variant="outline-warning" onClick={openModal}>
-        <PencilSquare size={props.size} />
+        <PencilSquare size={props.size} className="update-wallet" />
       </Button>
     </>
   )

@@ -14,42 +14,42 @@ export function TrackedWalletsPanel(props) {
   // const [showModal, setShowModal] = useState(false)
   const [refetch, setRefetch] = useState(false);
 
-  function handleSubmitted(val){
+  function handleSubmitted(val) {
     setRefetch(val)
   }
 
-const BUTTON_SIZE=45
+  const BUTTON_SIZE = 45
   return (
     <div>
-      <h3>Tracked Wallets Panel </h3>
+      <h3 className="tracked-header">Tracked BSC Wallets</h3>
       <Container className="wallets-list-container">
         <ListWallets
-          setWalletList={props.setWalletList} 
-          setSelected={(val) => props.setSelectedWallet(val)} 
-          refetch={refetch || props.refetch} 
-          setRefetch={val=>setRefetch(val)} 
+          setWalletList={props.setWalletList}
+          setSelected={(val) => props.setSelectedWallet(val)}
+          refetch={refetch || props.refetch}
+          setRefetch={val => setRefetch(val)}
           userID={userID}
         />
       </Container>
       <Container className="add-delete-wallet">
-        <AddWalletItem 
-          submitted={handleSubmitted} 
-          userID={userID} 
+        <AddWalletItem
+          submitted={handleSubmitted}
+          userID={userID}
           size={BUTTON_SIZE}
         />
         {'   '}
-        <DeleteWalletButton 
-          selectedWallet={wallet} 
-          submitted={handleSubmitted} 
-          size={BUTTON_SIZE} 
+        <DeleteWalletButton
+          selectedWallet={wallet}
+          submitted={handleSubmitted}
+          size={BUTTON_SIZE}
         />
         {'   '}
         <UpdateWalletItem
-          selectedWallet={wallet} 
-          submitted={handleSubmitted} 
+          selectedWallet={wallet}
+          submitted={handleSubmitted}
           size={BUTTON_SIZE}
         />
-      </Container>      
+      </Container>
     </div>
   )
 }

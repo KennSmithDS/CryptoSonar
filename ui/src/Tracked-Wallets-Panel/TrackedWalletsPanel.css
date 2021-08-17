@@ -9,3 +9,11 @@
 .add-delete-wallet {
 	padding: 20px;
 }
+
+.add-wallet {
+	color: #34daad;
+}
+
+.tracked-header {
+	padding-top: 10px;
+}
