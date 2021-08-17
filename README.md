@@ -15,24 +15,16 @@ This project was started with starter code from `react-create-app`.
 Note: Browser preferance for GoogleChrome 
 
 ## Contributions made by Joffrey:
-### Iteration 1
-* Front-end Development
-  * Containerizing initial page design skeleton
-  * Implementing Third-Party Libaries
-    * React-Bootstrap
-  * Nav Panel
-    * Account Settings Modal
-  * Tracked Wallets Pannel
-    * Modal for Add wallet form
-    * Display tracked wallets
-    * Rerender newly added wallet onto the walletList
-* Connecting Front-end to Back-end with API calls
-  * Fetch tracked wallets from graphql server
-  * Add wallet form  
-* Deploying Front-end to Heroku
-  * Added `"serve": "^12.0.0"` dependancy necessary for deployment to Heroku
-![HerokuDeployed](./images/iter1_heroku.PNG)
-![addWalletModal](./images/iter1_addWallet.PNG)
+### Iteration 3
+* User Features:
+  * Users are able to edit a selected wallet item
+* Software Development:
+  * Implemented update wallet on the backend schema and on the frontend gql call
+* Bells and whistles
+  * Wallet Address is shown when hovering over a wallet item.
+  * More admin login examples are provided on incorrect userCreds alert.c
+  * Logo is a clickable link landing to main dashboard page.
+  * Applied CSS themes to match dex.guru
 
 ### Iteration 2
 * User features:
@@ -52,24 +44,57 @@ Note: Browser preferance for GoogleChrome
   * Debugged rerendering issues in the tracked wallets pannel
     * addWallet child component updates sibling component listWallets by trigerring an update to the Wallet pannel parent state
   * Connected delete all wallets and deleteUser in account settings in UI via fetch calls to backend operations
-  
+
 ![CreateAccount](./images/iter2_create_account.PNG)
 ![UserSignIn](./images/iter2_user_signin.PNG)
 ![confirmDelete](./images/iter2_delete_user_account.PNG)
 
-### Iteration 3
-* User Features:
-  * Users are able to edit a selected wallet item
-* Software Development:
-  * Implemented update wallet on the backend schema and on the frontend gql call
-* Bells and whistles
-  * Wallet Address is shown when hovering over a wallet item.
-  * More admin login examples are provided on incorrect userCreds alert.c
-  * Logo is a clickable link landing to main dashboard page.
-  * Applied CSS themes to match dex.guru
+### Iteration 1
+* Front-end Development
+  * Containerizing initial page design skeleton
+  * Implementing Third-Party Libaries
+    * React-Bootstrap
+  * Nav Panel
+    * Account Settings Modal
+  * Tracked Wallets Pannel
+    * Modal for Add wallet form
+    * Display tracked wallets
+    * Rerender newly added wallet onto the walletList
+* Connecting Front-end to Back-end with API calls
+  * Fetch tracked wallets from graphql server
+  * Add wallet form  
+* Deploying Front-end to Heroku
+  * Added `"serve": "^12.0.0"` dependancy necessary for deployment to Heroku
 
+![HerokuDeployed](./images/iter1_heroku.PNG)
+![addWalletModal](./images/iter1_addWallet.PNG)
 
 ## Contributions made by Kendall:
+### Iteration 2
+* Front-end development
+  * Refactored Bscscan API utility into AlertPanel when receives wallet from Layout props
+  * Designed Alert Panel nested component structure
+    * AlertPanel fetches transaction data based on selected wallelets
+    * AlertTable builds a React Table of AlertItems (rows)
+    * AlertItem individual row element displaying transaction properties and links
+  * Panel/Modal to contain embedded Iframe for PriceChart
+    * Shows price chart for a token from a selected transaction/alert row
+    * Embedded price chart comes from dex.guru website (DApp)
+  * Implemented error handling for when invalid address is supplied by user
+    * Based on Response message status OK from external API service
+  * Debugged Heroku issue with users initially directed to `./login`
+    * Package.json homepage requires the full path: `https://crypto-sonar-ui.herokuapp.com/login`
+* Back-end Development
+  * Created userLogin root query definition 
+    * Support checking new user exists in login process
+* Deployed fixes and updates to Heroku
+  * Added `"react-iframe": "^1.8.0"` to support embedding of PriceChart Iframe
+	* Added	`"react-loader-spinner": "^4.0.0"` to add animated loading icon while fetching Bsc data
+
+![AlertPanel](./images/iter2_alert_panel.png)
+![InvalidWallet](./images/iter2_invalid_wallet.png)
+![PriceChart](./images/iter2_price_chart.png)
+
 ### Iteration 1
 * Back-end Development
   * Deployed MongoDB database to Atlas cluster
@@ -96,28 +121,3 @@ Note: Browser preferance for GoogleChrome
 ![MongoDBAtlasDeployed](./images/iter1_mongodb_deployment.png)
 ![DatabaseInitialization](./images/iter1_mongodb_initialization.png)
 ![GraphQLApi](./images/iter1_graphql.png)
-
-### Iteration 2
-* Front-end development
-  * Refactored Bscscan API utility into AlertPanel when receives wallet from Layout props
-  * Designed Alert Panel nested component structure
-    * AlertPanel fetches transaction data based on selected wallelets
-    * AlertTable builds a React Table of AlertItems (rows)
-    * AlertItem individual row element displaying transaction properties and links
-  * Panel/Modal to contain embedded Iframe for PriceChart
-    * Shows price chart for a token from a selected transaction/alert row
-    * Embedded price chart comes from dex.guru website (DApp)
-  * Implemented error handling for when invalid address is supplied by user
-    * Based on Response message status OK from external API service
-  * Debugged Heroku issue with users initially directed to `./login`
-    * Package.json homepage requires the full path: `https://crypto-sonar-ui.herokuapp.com/login`
-* Back-end Development
-  * Created userLogin root query definition 
-    * Support checking new user exists in login process
-* Deployed fixes and updates to Heroku
-  * Added `"react-iframe": "^1.8.0"` to support embedding of PriceChart Iframe
-	* Added	`"react-loader-spinner": "^4.0.0"` to add animated loading icon while fetching Bsc data
-
-![AlertPanel](./images/iter2_alert_panel.png)
-![InvalidWallet](./images/iter2_invalid_wallet.png)
-![PriceChart](./images/iter2_price_chart.png)
