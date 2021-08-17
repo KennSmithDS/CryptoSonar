@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Button } from 'react-bootstrap'
-import { PlusCircle } from 'react-bootstrap-icons'
+import { Container } from 'react-bootstrap'
 import './TrackedWalletsPanel.css'
 import { AddWalletItem } from './AddWalletItem'
 import { DeleteWalletButton } from './DeleteWalletButton'

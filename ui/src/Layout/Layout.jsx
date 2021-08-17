@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { AlertsPanel } from '../Alerts-Panel/AlertsPanel'
-import { ResourcesPanel } from '../Resources-Panel/ResourcesPanel'
+import { PricePanel } from '../Chart/PricePanel';
 import { TrackedWalletsPanel } from '../Tracked-Wallets-Panel/TrackedWalletsPanel'
 import { NavBarPanel } from '../NavBar/NavBarPanel'
-import PricePanel from '../Chart/PricePanel'
 import './Layout.css';
 
 export const Layout = (props) => {
@@ -15,9 +14,9 @@ export const Layout = (props) => {
   const [selectedAlert, setSelectedAlert] = useState(null)
 
   return (
-    <Container fluid>
+    <Container fluid className="app-container">
       <Row>
-        <Col className="NavBar" md={{offset:1, span:10}}>
+        <Col className="NavBar">
           <NavBarPanel
             user={props.user}
             walletList={walletList}
@@ -28,7 +27,7 @@ export const Layout = (props) => {
       <Row>
         <Col md={3}>
           <Row>
-            <Col className="tracked-wallet" md={{offset:4}}>
+            <Col className="tracked-wallet">
               <TrackedWalletsPanel
                 refetch={refetch}
                 setWalletList={setWalletList}
@@ -39,26 +38,21 @@ export const Layout = (props) => {
             </Col>
           </Row>
         </Col>
-        <Col md={8}>
+        <Col md={9}>
           <Row>
-            <Col className="alerts-panel" md={{span:12}}>
+            <Col className="alerts-panel">
               <AlertsPanel selectedWallet={selectedWallet}
                 setSelectedAlert={(val) => setSelectedAlert(val)}
               />
             </Col>
           </Row>
           <Row>
-            <Col className="resources-panel" md={12}>
-              <ResourcesPanel selectedWallet={selectedWallet} selectedAlert={selectedAlert} />
+            <Col className="price-panel">
+              <PricePanel contractAddress={selectedAlert} />
             </Col>
           </Row>
         </Col>
       </Row>
-      {/* <Row>
-        <Col className="price-chart-panel" md={12}>
-          <PricePanel contractAddress={selectedAlert} />
-        </Col>
-      </Row> */}
     </Container>
   )
 }

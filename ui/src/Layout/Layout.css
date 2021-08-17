@@ -6,6 +6,10 @@
 	background: var(--main-bg-color);
 }
 
+.app-container {
+	background-color: #191d22;
+}
+
 .NavBar {
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -25,7 +29,9 @@ h3, h2, h1, label {
 	border: 2px solid var(--main-border-color);
 	background: var(--main-bg-color);
 	border-radius: 10px;
-	margin-right:5px;
+	margin-right: 5px;
+	min-height: 805px;
+	/* flex-grow: 3; */
 }
 
 .wallets-list-container{
@@ -46,7 +52,7 @@ h3, h2, h1, label {
 	background: var(--main-bg-color);
 }
 
-.resources-panel {
+.price-panel {
 	margin-bottom:5px;
 	text-align: center;
 	min-height: 400px;

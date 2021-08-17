@@ -1,6 +1,13 @@
-.alert-container {
+.alerts-container {
     overflow-y: scroll;
     height: 340px;
+}
+
+.alert-row {
+    cursor: pointer;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
 .token-button {
@@ -34,4 +41,10 @@
     border-radius: 10px;
     height: 80%;
     width: 80%;
+}
+
+.transaction-link {
+    color:  #34daad;
+    height: 25%;
+    width: 25%;
 }

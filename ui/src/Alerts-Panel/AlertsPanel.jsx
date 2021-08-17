@@ -78,7 +78,7 @@ export function AlertsPanel(props) {
       <div>
         {props.selectedWallet.address ? <h2 className="alerts-header">Trading Alerts for {wallet.alias}'s BSC Wallet</h2> : <h2>Select a wallet to see alerts</h2>}
       </div>
-      <Container className="alert-container">
+      <Container className="alerts-container">
         {alertList ? <AlertTable alertList={alertList} setSelectedAlert={props.setSelectedAlert} /> : <Loader
           type="Rings"
           color="#00BFFF"
