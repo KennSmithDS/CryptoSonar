@@ -21,6 +21,8 @@ Note: Browser preferance for GoogleChrome
 * Software Development:
   * Implemented update wallet on the backend schema and on the frontend gql call
   * Addressed user login bug by refreshing the page upon user log in.
+    * Unsightly refresh upon rendering the dashboard
+      Fix attempt #2: Addressed user login bug by initally setting localStorage userCreds to persist starting from login component->app state->layout.
 * Bells and whistles
   * Wallet Address is shown when hovering over a wallet item.
   * More admin login examples are provided on incorrect userCreds alert.

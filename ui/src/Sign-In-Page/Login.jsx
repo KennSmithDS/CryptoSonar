@@ -38,8 +38,6 @@ export const Login = (props) => {
     }).then((response) => response.json())	
       .then((data) => {
         VerifyData(data.data)
-        // console.log(data.data)
-        // props.user(data.data.userLogin);
       });    
   }
   
@@ -59,8 +57,8 @@ export const Login = (props) => {
 
   const storeUser = (user) =>  {  
     localStorage.setItem('UserCredentials', JSON.stringify(user));
-    props.userLoggedIn(true)
-    props.setReload(true)
+    const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
+    props.setUser(userCreds)
   }
 
 
@@ -149,25 +147,3 @@ export const Login = (props) => {
 }
 
 export default Login
-
-// // Startercode For GQL implementation:
-// import {USER_LOGIN} from '../utils/queries/graphqlQueries'
-// import { useLazyQuery, useQuery } from '@apollo/client'
-
-  // const [userLogin, { data, loading, error }] = useLazyQuery(USER_LOGIN);
-  // const SendData = (formState) => {
-  //   userLogin({  
-  //     variables: {
-  //       userName: formState.username,
-  //       userPassword: formState.password 
-  //     },      
-  //   });
-  // }
-  // const GetUserID = (val) =>{
-  //   props.userId(val)
-  //   history.push(`/home`)
-  // }
-  // if (data !== undefined){
-  //   GetUserID(data.userLogin)
-  //   return null;
-  // }
