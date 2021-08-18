@@ -30,7 +30,7 @@ Note: Browser preferance for GoogleChrome
   * Applied CSS themes to match dex.guru
 
 ![walletToolTips](./images/iter3_wallet_tooltips.PNG)
-![updateWallet](./images/iter3_update_wallet.PNG)
+![updateWallet](./images/iter3_update_wallet.png)
 
 ### Iteration 2
 * User features:
