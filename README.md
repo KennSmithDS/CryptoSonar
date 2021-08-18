@@ -4,15 +4,33 @@
 * Kendall Smith
 
 ## Webpage:
-* Front-end Application
+* Hosted Front-end Application
 https://crypto-sonar-ui.herokuapp.com/login
 
-* Back-end GraphQL IDE
+* Hosted Back-end GraphQL IDE 
 https://crypto-sonar-api.herokuapp.com/graphql
 
 ## About:
+CryptoSONAR is a product for tracking short-term price signals for tokens on Decentralized Exchanges (DEX) in the Decentralized Finance (DeFI) space.  This tool enables users to securely login, add and remove wallets of other traders on the Binance Smart Chain such as whales and trading bots, to provide flash price alerts for buying or selling opportunities.
+
 This project was started with starter code from `react-create-app`.
-Note: Browser preferance for GoogleChrome 
+Note: Browser preferance for GoogleChrome
+
+## Future Scope of Work:
+* Upon detection of invalid wallet, turn off API data retrieval until new wallet selected or wallet address updated
+* Ability to hide a token by address if it is determined to be scam, aka not something bought but forced transfer
+* Improved logic for alerts to identify the exact new transactions in a wallet for the user to review
+  * Includes back-end work to setup new collections in MongoDB to store transactions for wallets
+  * Add new graphql query and mutation defintions for these collections 
+  * Configure front-end to query the back-end tables instead of owning the task of data retrieval in AlertPanel
+* Improved user authentication that doesn't use localStorage, and instead a service like Firebase, etc.
+* Further aesthetic improvements to popup alerts/modals, etc.
+* User wallet integration to allow for quick buy and sell of tokens identified in the alerts panel
+* Expand details available to a user about a token or transaction, such as liquidity, USD value, etc.
+  * Adding USD value visibility would require: 
+      * Easy to fetch token to USD conversion in real-time, but...
+      * Requires frequent API querying for each token, which...
+      * Would create a bad UX waiting for 100s of responses on each rerender
 
 ## Contributions made by Joffrey:
 ### Iteration 3
@@ -76,6 +94,30 @@ Note: Browser preferance for GoogleChrome
 ![addWalletModal](./images/iter1_addWallet.PNG)
 
 ## Contributions made by Kendall:
+### Iteration 3
+* Front-end Development
+  * User Features
+    * Logic in AlertItems shown in AlertsPanel to indicate if transaction was a buy or sell
+    * Alert for when new transaction(s) for a tracked wallet are identified
+    * Alert for when a wallet has invalid address, BscScan.com API response is not OK
+    * Transactions shown in AlertPanel are updated with a timeout feature
+    * Added modal to confirm if user wants to delete a wallet
+  * UI Improvements
+    * Updated AlertItem aesthetics
+      * Token name (link to token contract) is a button with hover
+      * Token quantity field has formated numbers with commas
+      * Buy and Sell indicators have unique styling
+      * Link to transaction is a bootstrap icon
+      * Transaction timestamp converted to UTC to align with Dex.guru PriceChart
+      * Override of bootstrap icon CSS styling for buttons to add, delete and update a wallet
+      * Override of default modal CSS styling for add, delete and update wallet features
+
+![AddWalletStyling](./images/iter3_add_wallet.png)
+![DeleteWalletConfirmation](./images/iter3_delete_confirmation.png)
+![AlertPanelStyling](./images/iter3_alert_panel_styling.png)
+![NewTransactionNotification](./images/iter3_new_transaction_notification.png)
+![InvalidWalletNotification](./images/iter3_invalid_wallet_notification.png)
+
 ### Iteration 2
 * Front-end development
   * Refactored Bscscan API utility into AlertPanel when receives wallet from Layout props
