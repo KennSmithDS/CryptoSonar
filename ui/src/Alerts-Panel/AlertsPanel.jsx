@@ -1,12 +1,11 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import React, { useEffect, useState } from 'react'; // , useCallback, useEffect
+// import { ToastContainer, toast } from 'react-toastify';
 import { Container } from 'react-bootstrap';
 import AlertTable from './AlertTable';
-import AlertNotification from "./AlertNotification";
+import InvalidWalletAlert from "./InvalidWalletAlert";
 import Loader from "react-loader-spinner";
 import './AlertsPanel.css';
-// import { makeBitQueryCall } from '../utils/bitqueryApi';
-// import { makeBscScanCall } from '../utils/bscscanApi';
 
 import dotenv from 'dotenv';
 dotenv.config({ path: "../../.env" });
@@ -22,14 +21,13 @@ export function AlertsPanel(props) {
 
   const wallet = props.selectedWallet;
 
+  const [showWarning, setShowWarning] = useState(false);
   const [alertList, setAlertList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [validWallet, setValidWallet] = useState(true);
+  // const [validWallet, setValidWallet] = useState(true);
 
   async function bscScanHandler() {
-
     console.log(`Trying to make a new request for ${wallet.address}`);
-    setValidWallet(true);
     setIsLoading(true);
 
     const apiUrl = `${bscUrl}&address=${wallet.address}&startblock=${startBlock}&endblock=${endBlock}&sort=${sortOrder}&apikey=${apiKey}`;
@@ -55,17 +53,23 @@ export function AlertsPanel(props) {
       setAlertList(filteredKeyValues)
       setIsLoading(false);
     } else if (data.status === "0") {
-      setValidWallet(false);
+      console.log('Invalid wallet found');
+      setShowWarning(true);
+      // setValidWallet(false);
     }
-
   };
 
+  // useEffect(() => {
+  //   setValidWallet(true);
+  // }, [props.selectedWallet]);
+
   useEffect(() => {
+    // setValidWallet(true);
     setAlertList(null);
+
     if (props.selectedWallet.address) {
       bscScanHandler();
       const handleApiRefresh = setInterval(bscScanHandler, 60000);
-      console.log(handleApiRefresh);
       return (() => {
         console.log('Clearing refresh interval');
         clearInterval(handleApiRefresh);
@@ -81,12 +85,13 @@ export function AlertsPanel(props) {
       <Container className="alerts-container">
         {alertList ? <AlertTable alertList={alertList} setSelectedAlert={props.setSelectedAlert} /> : <Loader
           type="Rings"
-          color="#00BFFF"
+          color="#34daad"
           height={125}
           width={125}
           timeout={10000}
         />}
-        {!validWallet && <AlertNotification message={`Entry for ${wallet.alias} has invalid address`} />}
+        {/* {!validWallet && <ToastContainer />} */}
+        <InvalidWalletAlert message={`Entry for ${wallet.alias} has invalid address ${wallet.address}`} showWarning={showWarning} setShowWarning={setShowWarning} />
       </Container>
     </div>
   );

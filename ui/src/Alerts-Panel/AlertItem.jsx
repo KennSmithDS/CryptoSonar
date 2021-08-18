@@ -17,7 +17,7 @@ export function AlertItem(props) {
             <td><Button variant="outlined" href={`https://bscscan.com/address/${props.contractAddress}`} target="_blank" className="token-button">{props.tokenName}</Button></td>
             <td>{props.tokenSymbol}</td>
             <td>{(Math.round((props.tokenQuantity / 10 ** props.tokenDecimal) * 100) / 100).toLocaleString('en-US', { minimumFractionDigits: 2 })}</td>
-            <td>{props.toAddress === props.walletAddress ? <div className="order-buy">Buy</div> : <div className="order-sell">Sell</div>}</td>
+            <td>{props.toAddress.toLowerCase() === props.walletAddress.toLowerCase() ? <div className="order-buy">Buy</div> : <div className="order-sell">Sell</div>}</td>
             {/* <td>{currencyFormatter.format(props.tokenValue)}</td> */}
             <td>
                 <a href={`https://bscscan.com/tx/${props.transaction}`} target="_blank" rel="noreferrer">

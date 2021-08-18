@@ -13,6 +13,8 @@ export const Layout = (props) => {
   const [refetch, setRefetch] = useState(false)
   const [selectedAlert, setSelectedAlert] = useState(null)
 
+  console.log(`Current selected wallet: ${selectedWallet.alias} ${selectedWallet.address}`);
+
   return (
     <Container fluid className="app-container">
       <Row>

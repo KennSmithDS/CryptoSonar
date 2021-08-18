@@ -12,30 +12,48 @@
 	padding: 20px;
 }
 
-.add-wallet {
-	color: #34daad;
+.add-wallet, .delete-wallet, .update-wallet {
 	fill: #34daad;
-	outline: #34daad;
-	border-color: #34daad;
-	box-shadow: #34daad;
 }
 
-.delete-wallet {
-	color: #34daad;
-	fill: #34daad;
-	outline: #34daad;
-	border-color: #34daad;
-	box-shadow: #34daad;
+.delete-wallet:hover {
+	fill: #f73939;
 }
 
-.update-wallet {
-	color: #34daad;
-	fill: #34daad;
-	outline: #34daad;
-	border-color: #34daad;
-	box-shadow: #34daad;
+.update-wallet:hover {
+	fill: #eec336;
 }
 
 .tracked-header {
 	padding-top: 10px;
+}
+
+.confirm-delete-container {
+	color: white;
+	background-color: #191d22 transparent;
+}
+
+.modal-content {
+	border: #34daad 2px solid;
+	background-color: #191d22;
+}
+
+.cancel-delete {
+	color: white;
+	background: #7b7d81;
+	border: 0px;
+}
+
+.cancel-delete:hover {
+	background: #b6b9c0;
+}
+
+.confirm-delete {
+	color: white;
+	background: #9c3939;
+	border: 0px;
+}
+
+.confirm-delete:hover {
+	background: #f73939;
 }
