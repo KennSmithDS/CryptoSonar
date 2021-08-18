@@ -34,8 +34,10 @@
 }
 
 .modal-content {
+	color: white;
 	border: #34daad 2px solid;
 	background-color: #191d22;
+	
 }
 
 .cancel-delete {
@@ -56,4 +58,28 @@
 
 .confirm-delete:hover {
 	background: #f73939;
+}
+
+.add-submit-btn {
+	color: white;
+	background: #7b7d81;
+	border: 0px;
+}
+
+.add-submit-btn:hover {
+	color: white;
+	background: #34daad;
+	border: 0px;
+}
+
+.update-submit-btn {
+	color: white;
+	background: #7b7d81;
+	border: 0px;
+}
+
+.update-submit-btn:hover {
+	color: white;
+	background: #34daad;
+	border: 0px;
 }

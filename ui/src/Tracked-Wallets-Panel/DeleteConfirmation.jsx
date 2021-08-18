@@ -6,7 +6,7 @@ const DeleteConfirmation = ({ showModal, hideModal, confirmModal, id, message })
     return (
         <Modal show={showModal} onHide={hideModal} className="confirm-delete-container">
             <Modal.Header closeButton>
-                <Modal.Title>Delete Confirmation</Modal.Title>
+                <Modal.Title>Delete Wallet</Modal.Title>
             </Modal.Header>
             <Modal.Body><div>{message}</div></Modal.Body>
             <Modal.Footer>

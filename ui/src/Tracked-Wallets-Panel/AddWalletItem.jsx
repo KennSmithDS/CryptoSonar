@@ -79,7 +79,7 @@ export const AddWalletItem = (props) => {
                     value={inputs.walletAlias || ''}
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button className="add-submit-btn" type="submit">
                   Submit
                 </Button>
               </Form>

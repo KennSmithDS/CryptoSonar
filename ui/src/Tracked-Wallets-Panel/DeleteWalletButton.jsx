@@ -6,7 +6,7 @@ import { REMOVE_WALLET } from '../utils/queries/graphqlQueries'
 import DeleteConfirmation from './DeleteConfirmation'
 
 export const DeleteWalletButton = (props) => {
-  const { id } = props.selectedWallet
+  const { id, address, alias } = props.selectedWallet
 
   const [delWalFunc, { loading, error }] = useMutation(REMOVE_WALLET);
 
@@ -21,7 +21,7 @@ export const DeleteWalletButton = (props) => {
 
   const showDeleteModal = (id) => {
     setDisplayConfirmationModal(true);
-    setDeleteMessage(`Are you sure you no longer want to track this address?: ${id.address}`)
+    setDeleteMessage(`Are you sure you no longer want to track ${alias}'s address? ${address}`)
   }
 
   // Check id and send data

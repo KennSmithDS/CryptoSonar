@@ -81,7 +81,7 @@ export const UpdateWalletItem = (props) => {
                     defaultValue={formState.alias}
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button className="update-submit-btn" type="submit">
                   Submit
                 </Button>
               </Form>

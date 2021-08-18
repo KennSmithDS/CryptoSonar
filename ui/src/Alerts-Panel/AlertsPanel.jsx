@@ -1,9 +1,10 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import React, { useEffect, useState } from 'react'; // , useCallback, useEffect
-// import { ToastContainer, toast } from 'react-toastify';
-import { Container } from 'react-bootstrap';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useLocalStorage } from 'react-use';
+import { Container, NavLink } from 'react-bootstrap';
 import AlertTable from './AlertTable';
 import InvalidWalletAlert from "./InvalidWalletAlert";
+import NewTransactionAlert from "./NewTransactionAlert";
 import Loader from "react-loader-spinner";
 import './AlertsPanel.css';
 
@@ -17,11 +18,43 @@ const startBlock = "0";
 const endBlock = "999999999";
 const sortOrder = "desc";
 
+
+
+// function useLastSeenTransaction(key, defaultValue) {
+//   const [lastSeen, setLastSeen] = useState(() => {
+//     const storedData = window.localStorage.getItem(key);
+
+//     return storedData !== null
+//       ? JSON.parse(storedData)
+//       : defaultValue;
+//   });
+
+//   useEffect(() => {
+//     window.localStorage.setItem(key, JSON.stringify(lastSeen));
+//   }, [key, lastSeen]);
+
+//   return [lastSeen, setLastSeen];
+// }
+
+function useLastSeenFromWallet(walletAddress) {
+  const [lastSeen, setLastSeen] = useLocalStorage("LastSeen", {});
+  const lastSeenTransaction = walletAddress && lastSeen[walletAddress] || null;
+
+  const setLastSeenTransaction = useCallback((newTransactionHash) => {
+    setLastSeen({ ...lastSeen, [walletAddress]: newTransactionHash })
+  }, [lastSeen, walletAddress]);
+
+  return [lastSeenTransaction, setLastSeenTransaction];
+}
+
 export function AlertsPanel(props) {
 
   const wallet = props.selectedWallet;
 
+  // const [lastSeen, setLastSeen] = useLastSeenTransaction("LastSeen", {});
+  const [lastSeen, setLastSeen] = useLastSeenFromWallet(wallet.address);
   const [showWarning, setShowWarning] = useState(false);
+  const [showNewAlerts, setShowNewAlerts] = useState(false);
   const [alertList, setAlertList] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   // const [validWallet, setValidWallet] = useState(true);
@@ -50,6 +83,7 @@ export function AlertsPanel(props) {
           tokenDecimal: tx.tokenDecimal
         }
       })
+
       setAlertList(filteredKeyValues)
       setIsLoading(false);
     } else if (data.status === "0") {
@@ -59,9 +93,20 @@ export function AlertsPanel(props) {
     }
   };
 
-  // useEffect(() => {
-  //   setValidWallet(true);
-  // }, [props.selectedWallet]);
+  useEffect(() => {
+    if (!alertList || alertList.length === 0) {
+      console.log('Bailing!');
+      return;
+    }
+
+    const lastHash = alertList[0].hash;
+
+    if (!lastSeen || lastHash !== lastSeen) {
+      console.log(`Updating last seen ${lastSeen} value in local storage to ${lastHash}`);
+      setShowNewAlerts(true);
+      setLastSeen(lastHash);
+    }
+  }, [alertList]);
 
   useEffect(() => {
     // setValidWallet(true);
@@ -69,7 +114,7 @@ export function AlertsPanel(props) {
 
     if (props.selectedWallet.address) {
       bscScanHandler();
-      const handleApiRefresh = setInterval(bscScanHandler, 60000);
+      const handleApiRefresh = setInterval(bscScanHandler, 60000); // 3600000 - updates every hour
       return (() => {
         console.log('Clearing refresh interval');
         clearInterval(handleApiRefresh);
@@ -90,8 +135,8 @@ export function AlertsPanel(props) {
           width={125}
           timeout={10000}
         />}
-        {/* {!validWallet && <ToastContainer />} */}
         <InvalidWalletAlert message={`Entry for ${wallet.alias} has invalid address ${wallet.address}`} showWarning={showWarning} setShowWarning={setShowWarning} />
+        <NewTransactionAlert message={`New transaction(s) found for ${wallet.alias}`} showWarning={showNewAlerts} setShowWarning={setShowNewAlerts} />
       </Container>
     </div>
   );
