@@ -17,11 +17,11 @@ const client = new ApolloClient({
 function App() {
   const [user, setUser] = useState('')
   const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('UserCredentials')) {
       const userCreds = JSON.parse(localStorage.getItem('UserCredentials'));
-      console.log(userCreds);
       setUser(userCreds)
       setUserLoggedIn(true)
     } else {
@@ -29,6 +29,12 @@ function App() {
     }
   }, [setUser, setUserLoggedIn, userLoggedIn]);
 
+  useEffect(() => {
+    if(reload){
+      window.location.reload();
+      setReload(false)
+    }
+  }, [reload]);
 
   return (
     <div className="App">
@@ -37,7 +43,7 @@ function App() {
           <ApolloProvider client={client}>
             <Switch>
               <Route path="/login" component={Login}>
-                <Login userLoggedIn={setUserLoggedIn} />
+                <Login userLoggedIn={setUserLoggedIn} setReload={setReload}/>
               </Route>
               <Route exact path="/" component={Layout}>
                 <Layout user={user} />
@@ -51,7 +57,7 @@ function App() {
           <Redirect to="/login" />
           <ApolloProvider client={client}>
             <Route path="/login" component={Login}>
-              <Login userLoggedIn={setUserLoggedIn} />
+              <Login userLoggedIn={setUserLoggedIn} setReload={setReload}/>
             </Route>
           </ApolloProvider>
         </Router>

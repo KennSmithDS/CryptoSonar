@@ -20,11 +20,15 @@ Note: Browser preferance for GoogleChrome
   * Users are able to edit a selected wallet item
 * Software Development:
   * Implemented update wallet on the backend schema and on the frontend gql call
+  * Addressed user login bug by refreshing the page upon user log in.
 * Bells and whistles
   * Wallet Address is shown when hovering over a wallet item.
-  * More admin login examples are provided on incorrect userCreds alert.c
+  * More admin login examples are provided on incorrect userCreds alert.
   * Logo is a clickable link landing to main dashboard page.
   * Applied CSS themes to match dex.guru
+
+![walletToolTips](./images/iter3_wallet_tooltips.PNG)
+![updateWallet](./images/iter3_update_wallet.PNG)
 
 ### Iteration 2
 * User features:
